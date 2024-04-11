@@ -1,0 +1,147 @@
+
+ .eachTrack{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  padding: 5px 1% ;
+}
+.eachTrack:hover{
+  background-color: hsla(0, 0%, 100%, .1);
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.eachTrack:hover img{
+  opacity: 0;
+  display: none;
+  pointer-events: none;
+}
+
+.eachTrack .index i{
+  position: absolute;
+  opacity: 0;
+}
+.eachTrack:hover i{
+  opacity: 1;
+}
+.eachTrack:hover .loading_wave{
+  opacity: 0;
+  display: none;
+}
+
+.eachTrack img{
+  width: 45px;
+  height: 45px;
+}
+.eachTrack .tittle{
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: flex-start;
+  width: 100%;
+}
+.eachTrack  p{
+  font-size: 14px;
+  align-content: center;
+  font-weight: 600;
+}
+.eachTrack .tittle p,
+  a {
+  margin: 2px;
+  font-size: 15px;
+  color:#a7a7a7 ;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+.eachTrack a:hover {
+text-decoration: underline;
+cursor: pointer;
+}
+.eachTrack .tittle img{
+  width: 40px;
+  height: 40px;
+}
+.eachTrack .artists{
+  display: flex;
+}
+
+.eachTrack .album,
+.eachTrack .date{
+  width: 30%;
+  display: flex;
+}
+.eachTrack .duration{
+  width: 15%;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.eachTrack .duration box-icon{
+  opacity: 0;
+}
+.eachTrack .duration box-icon #icon{
+  fill: red;
+
+}
+.eachTrack .index{
+  width: 50px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  font-weight: bold;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  align-items: center;
+  height: 50px;
+  color: #a7a7a7;
+  min-width: 50px;
+  border-radius: 30px;
+}
+
+
+.loading_wave {
+width: 300px;
+height: 100px;
+display: flex;
+justify-content: center;
+align-items: flex-end;
+transform: scale(.3);
+}
+
+.loading_bar {
+width: 20px;
+height: 10px;
+margin: 0 5px;
+background-color: #1fdf64;
+border-radius: 5px;
+animation: loading-wave-animation 1s ease-in-out infinite;
+}
+
+.loading_bar:nth-child(2) {
+animation-delay: 0.1s;
+}
+
+.loading_bar:nth-child(3) {
+animation-delay: 0.2s;
+}
+
+.loading_bar:nth-child(4) {
+animation-delay: 0.3s;
+}
+
+@keyframes loading-wave-animation {
+0% {
+  height: 10px;
+}
+
+50% {
+  height: 50px;
+}
+
+100% {
+  height: 10px;
+}
+}

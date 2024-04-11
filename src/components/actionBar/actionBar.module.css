@@ -1,0 +1,21 @@
+ .playIcon{
+  background-color: #1fdf64;
+  border-radius: 9999px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 55px;
+  height: 55px;
+  transition: 200ms;
+  cursor: pointer;
+}
+ .playIcon:hover{
+transform: scale(105%);
+}
+
+.heart{
+  cursor: pointer;
+}
+.heart:hover{
+  transform: scale(106%);
+}

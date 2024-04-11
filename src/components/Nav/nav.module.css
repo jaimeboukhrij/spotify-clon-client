@@ -1,0 +1,235 @@
+.nav {
+  position: absolute;
+  top: 0;
+  /* left: 316px; */
+  width: -webkit-fill-available;
+  height: 58px;
+  display: flex;
+  color: white;
+  min-width: 482px;
+  z-index: 40;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  margin-top: 7px;
+  margin-right: 7px;
+}
+.nav .filter{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .6);
+
+}
+
+.nav .section1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4%;
+  width: 65%;
+  justify-content: center;
+  padding-left: 4px;
+  z-index: 2;
+}
+.inputContainer {
+  display: flex;
+  width: 70%;
+  border-radius: 20px;
+  background-color: #2a2a2a;
+  border: 2px solid transparent;
+  height: 78%;
+}
+
+.inputContainer:hover {
+  border: 2px solid rgba(255, 255, 255, 0.292);
+}
+
+.inputContainer:focus-within {
+  border: 2px solid white;
+
+
+}
+
+.nav .section1 label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  padding-left: 4%;
+  height: 50px;
+}
+
+.nav .section1 input {
+  border: none;
+  background-color: transparent;
+  padding: 17px 10px;
+  width: 100%;
+  color: white;
+  min-width: 153px;
+  max-width: 350px;
+}
+
+.nav .section1 input:focus-visible {
+  outline: none;
+}
+
+
+.nav .section1 .arrows{
+  gap:5px
+  }
+.nav .section1 .arrows span{
+  background-color: rgba(0, 0, 0, .6);
+  border-radius: 50px;
+  width: 32px;
+  height: 32px;
+}
+.nav .arrows span:hover{
+  background-color: rgba(0, 0, 0, .8);
+  transform: scale(103%);
+
+
+}
+
+.nav .section1 div {
+  border-radius: 9999px;
+  display: flex;
+  cursor: pointer;
+}
+
+.nav .section2 {
+  display: flex;
+  align-items: center;
+  gap: 4%;
+  width: 40%;
+  gap: 10px;
+  justify-content: flex-end;
+  padding-right: 2%;
+  z-index: 2;
+}
+
+.nav .section2 .instalarApp {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background-color: rgba(0, 0, 0, .6);
+  border-radius: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+  min-width: 108px;
+  padding: 0 3%;
+  height: 33px;
+}
+
+.nav .section2 .instalarApp span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav .section2 .instalarApp:hover {
+  background-color: rgba(0, 0, 0, .8);
+  transform: scale(106%);
+
+}
+
+.nav .section2 .bell {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, .6);
+  border-radius: 40px;
+  padding: 1%;
+
+}
+
+.nav .section2 .bell:hover {
+  transform: scale(106%);
+  background-color: rgba(0, 0, 0, .8);
+
+}
+
+.nav .section2 .name {
+  padding: 5px 10px;
+  border-radius: 200px;
+  background-color: rgb(245, 115, 160);
+  color: black;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.nav .section2 .name:hover {
+  transform: scale(106%);
+}
+
+.nav .profileOptions {
+  z-index: 9999;
+  position: absolute;
+  inset: 0px 28px auto auto;
+  margin: 0px;
+  transform: translate(-27px, 64px);
+  background-color: #282828;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border-radius: 0;
+  width: 190px;
+  padding: 18px 2px;
+  color: hsla(0, 0%, 100%, .9);
+  font-size: 0.9em;
+  height: 120px;
+  border-radius: 5px;
+}
+
+.nav .profileOptions div {
+  background-color: transparent;
+  padding-left: 9px;
+  padding: 10px 0;
+  padding-left: 11px;
+  border-radius: 1px;
+  cursor: pointer;
+}
+
+.nav .profileOptions div:hover {
+  background-color: hsla(0, 0%, 100%, .1);
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav .logInButton {
+  text-decoration: none;
+  background-color: white;
+  color: black;
+  padding: 15px 34px;
+  font-weight: 700;
+  border-radius: 20px;
+  min-width: 106px;
+}
+
+.nav .logInButton:hover {
+  transform: scale(105%);
+}
+
+.nav .signUpButton {
+  text-decoration: none;
+  background-color: transparent;
+  color: #ffffff82;
+  padding: 15px 34px;
+  font-weight: 700;
+  border-radius: 30px;
+}
+
+.nav .signUpButton:hover {
+  color: white;
+  transform: scale(105%);
+}
+
+@media (max-width: 1100px) {
+  .rightArrow {
+    display: none !important;
+  }
+}

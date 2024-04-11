@@ -1,0 +1,2 @@
+-en el signup ajustar el scroll ❌
+-height: initial; en la parte como oscura por ejemplo de track ❌

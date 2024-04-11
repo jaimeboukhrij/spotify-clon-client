@@ -1,0 +1,48 @@
+body{
+  margin: 0;
+  height: 100%;
+  background: black;
+  color: white;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: default;
+}
+
+#root{
+    display: flex;
+    min-height: 600px;
+    height: 100vh;
+  min-width: 920px;
+
+}
+
+a{
+  text-decoration: none;
+  color: white;
+}
+img{
+  width: 50px;
+  height: 50px;
+}
+
+/* Estilos para la barra de desplazamiento */
+::-webkit-scrollbar {
+  width: 12px; /* Ancho de la barra de desplazamiento */
+}
+
+/* Estilo del riel de la barra de desplazamiento */
+::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.355); /* Color de fondo del riel */
+}
+
+/* Estilo del pulgar de la barra de desplazamiento */
+::-webkit-scrollbar-thumb {
+  background-color: #f0f0f06a; /* Color del pulgar */
+  border-radius: 2px; /* Radio de borde del pulgar */
+}
+
+/* Estilo del pulgar de la barra de desplazamiento al pasar el mouse */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #949292; /* Color del pulgar al pasar el mouse */
+}

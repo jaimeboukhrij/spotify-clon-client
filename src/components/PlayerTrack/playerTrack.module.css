@@ -1,0 +1,92 @@
+.main{
+  background-color: #121212;
+  position: absolute;
+  bottom: 0;
+  height: 90px;
+  width: -webkit-fill-available;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+  min-width: inherit;
+}
+.main .track{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  height: 100%;
+  width: 20%;
+  min-width: 219px;
+}
+.track span{
+  font-size: 12px;
+}
+.track p{
+  font-size: 11px;
+}
+
+.main .track div{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.main .track a:hover{
+  text-decoration: underline;
+}
+
+.main .track img{
+  width: 65px;
+    height: 65px;
+}
+
+.plusIcon:hover{
+transform: scale(105%);
+}
+
+.playIcons{
+  display: flex;
+  gap: 10px;
+}
+
+.progresBar{
+  width: 80%;
+  height: 2px;
+  background-color: gray;
+
+}
+
+.progresBar .progressFill{
+  height: 2px;
+  background-color: white;
+
+}
+
+.main article{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:5px;
+}
+
+.main .multipleIcons{
+  width: 15%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.main .soundBar{
+  width: 80%;
+  height: 2px;
+  background-color: white;
+}
+
+
+.main span:hover{
+  transform: scale(110%);
+  cursor: pointer;
+}
+.main .volumeBar:hover{
+  transform: none;
+}

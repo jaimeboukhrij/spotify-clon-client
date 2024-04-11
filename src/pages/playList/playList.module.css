@@ -1,0 +1,214 @@
+.container{
+  min-width: 523px;
+
+}
+.header{
+  width: 100%;
+  height: 243px;
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  background-color: transparent;
+  padding-left: 2%;
+  }
+  .header h2{
+    height: max-content;
+    font-size: 3em;
+    margin: 0;
+    margin-bottom: 3px;
+    font-weight: bold;
+  }
+  .header p{
+    margin: 0;
+    font-weight: 700;
+    font-size: 15px;
+    color:hsla(0, 0%, 100%, .7);
+  }
+  .header .img{
+    width: 150px;
+    height: 128px;
+    aspect-ratio: 1/1;
+    background-size: contain;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    background-repeat: no-repeat;
+  }
+  .header .info{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 6px;
+    font-weight: 700;
+  }
+  .header .infoExtra{
+    display: flex;
+    gap: 5px;
+  }
+  .header .infoExtra span,
+  .header .infoExtra p{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: white;
+    font-size: 15px;
+  }
+  .mainSection{
+    position: absolute;
+    width: -webkit-fill-available;
+    height: auto;
+    top: 261px;
+    padding: 2%;
+    isolation: isolate;
+    background: linear-gradient(rgb(0, 0, 0, .2), #121212 100%);
+    display: flex;
+    gap: 17px;
+    flex-direction: column;
+  }
+
+  .mainSection .allTracks{
+    display: flex;
+    flex-direction: column;
+  }
+  .mainSection .eachTrack{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 20px;
+    padding: 1%;
+  }
+  .mainSection .eachTrack:hover{
+    background-color: hsla(0, 0%, 100%, .1);
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  .mainSection .eachTrack:hover  .duration box-icon{
+    opacity: 1;
+  }
+
+  .mainSection .tittle{
+    display: flex;
+    align-items: center;
+    width: 36%;
+    gap: 10px;
+    min-width: 246px;
+  }
+  .mainSection p{
+    font-size: 14px;
+    align-content: center;
+    font-weight: 600;
+  }
+  .mainSection .tittle p,
+  .mainSection  a {
+    margin: 2px;
+    font-size: 15px;
+    color:#a7a7a7 ;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+  }
+  .mainSection  a:hover {
+   text-decoration: underline;
+   cursor: pointer;
+  }
+  mainSection .tittle img{
+    width: 40px;
+    height: 40px;
+  }
+  .mainSection .artists{
+    display: flex;
+  }
+
+  .mainSection .album,
+  .mainSection .date{
+    width: 18%;
+    display: flex;
+  }
+  .mainSection .duration{
+    width: 15%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  .mainSection .duration box-icon{
+    opacity: 0;
+  }
+  .mainSection .duration box-icon #icon{
+    fill: red;
+
+  }
+  .mainSection .index{
+    width: 5%;
+    font-weight: bold;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    align-items: center;
+    height: 52px;
+  }
+
+  .loading_wave {
+    width: 300px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    transform: scale(.3);
+  }
+  
+  .loading_bar {
+    width: 20px;
+    height: 10px;
+    margin: 0 5px;
+    background-color: #1fdf64;
+    border-radius: 5px;
+    animation: loading-wave-animation 1s ease-in-out infinite;
+  }
+  
+  .loading_bar:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  
+  .loading_bar:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+  
+  .loading_bar:nth-child(4) {
+    animation-delay: 0.3s;
+  }
+  
+  @keyframes loading-wave-animation {
+    0% {
+      height: 10px;
+    }
+  
+    50% {
+      height: 50px;
+    }
+  
+    100% {
+      height: 10px;
+    }
+  }
+  
+  
+      
+
+  @media (max-width: 1100px) {
+    .mainSection .date {
+      display: none !important;
+    }
+    .header .time{
+      display: none !important;
+    }
+    .header p{
+      font-size: 14px;
+    }
+    .header h2{
+      font-size: 2em;
+      margin-bottom: 5px;
+    }
+  }
