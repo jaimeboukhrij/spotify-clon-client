@@ -1,17 +1,27 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { getAlbumInfo } from '../utils/getAlbumInfo'
 import { useParams } from 'react-router'
 import { getMoreofArtist } from '../utils/getMoreofArtist'
+import { GlobalVarContext } from '../contexts/globalVar.context'
+import { useBgNav } from './UseBgNav'
 
-export function useAlbum (changeNavColor) {
+export function useAlbum () {
   const [albumInfo, setAlbumInfo] = useState()
   const [albumTracks, setAlbumTracks] = useState()
   const [artistdiscography, setArtistdiscography] = useState()
   const [width, setDivWidth] = useState()
+  const [bgColor, setBgColor] = useState()
   const { idAlbum } = useParams()
+  const { setNavFilter } = useContext(GlobalVarContext)
+  const outerDivName = 'albumContainer'
+  const innerDivName = 'tracksOfAlbum'
+  useBgNav({ bgColor, outerDivName, innerDivName })
+  const { setPageName } = useContext(GlobalVarContext)
 
   useEffect(() => {
-    changeNavColor('transparent')
+    setNavFilter('transparent')
+    document.getElementById(outerDivName)?.scrollTo(0, 0)
+
     if (idAlbum) {
       getAlbumData()
     }
@@ -33,6 +43,7 @@ export function useAlbum (changeNavColor) {
   useEffect(() => {
     if (albumInfo) {
       getArtistdiscography()
+      setPageName(albumInfo?.name)
     }
   }, [albumInfo])
   const setIsHoverTrack = (trackIndex, isHover) => {
@@ -69,6 +80,8 @@ export function useAlbum (changeNavColor) {
     setIsHoverTrack,
     idAlbum,
     artistdiscography,
-    width
+    width,
+    bgColor,
+    setBgColor
   })
 }

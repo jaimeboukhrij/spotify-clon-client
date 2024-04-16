@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import styles from '../../pages/track/track.module.css'
 import { secondsToMinute } from '../../utils/secondsToMinute'
 
@@ -15,13 +16,13 @@ export function Header ({ trackInfo, artistImg }) {
                 src={artistImg} alt='ArtisImg'
                 style={{ borderRadius: '9999px', width: '30px', height: '30px' }}
               />
-              <p>{trackInfo.owner[0][1]}</p>
-              <span>~</span>
+              <Link to={`/artist/${trackInfo.owner[0][0]}`}><p>{trackInfo.owner[0][1]}</p></Link>
+              <span>·</span>
             </span>
-            <span>{trackInfo.album[1]}  </span>
-            <span>~</span>
-            <span>{trackInfo.date.substring(0, 5)} </span>
-            <span>~</span>
+            <Link to={`/album/${trackInfo.album[0]}`}><span>{trackInfo.album[1]}</span></Link>
+            <span>·</span>
+            <span>{trackInfo.date.substring(0, 4)} </span>
+            <span>·</span>
 
             <span
               style={{ color: 'rgb(255 255 255 / 69%' }}

@@ -10,19 +10,19 @@ import { Artist } from '../pages/artist/Artist'
 import { Album } from '../pages/album/Album'
 import { Search } from '../pages/search/Search'
 
-const AppRoutes = ({ changeNavColor }) => {
+const AppRoutes = () => {
   return (
     <Routes>
-      <Route path='/' element={<Home changeNavColor={changeNavColor} />} />
+      <Route path='/' element={<Home />} />
       <Route path='/login' element={<LogIn />} />
       <Route path='/search' element={<Categories />} />
       <Route path='/search/:query' element={<Search />} />
       <Route path='/signup' element={<SignUp />} />
-      <Route path='/album/:idAlbum' element={<Album changeNavColor={changeNavColor} />} />
-      <Route path='/genre/:idGenre' element={<Genre changeNavColor={changeNavColor} />} />
-      <Route path='/playlist/:idPlayList' element={<PlayList changeNavColor={changeNavColor} />} />
-      <Route path='/track/:idTrack' element={<Track changeNavColor={changeNavColor} />} />
-      <Route path='/artist/:idArtist' element={<Artist changeNavColor={changeNavColor} />} />
+      <Route path='/album/:idAlbum' element={<Album />} />
+      <Route path='/genre/:idGenre' element={<Genre />} />
+      <Route path='/playlist/:idPlayList' element={<PlayList />} />
+      <Route path='/track/:idTrack' element={<Track />} />
+      <Route path='/artist/:idArtist' element={<Artist />} />
     </Routes>
   )
 }

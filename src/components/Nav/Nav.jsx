@@ -7,9 +7,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import { GlobalVarContext } from '../../contexts/globalVar.context'
 import { SearchContext } from '../../contexts/search.context'
 
-export function Nav ({ navColor }) {
+export function Nav () {
   const context = useContext(AuthContext)
-  const { navFilter, pageName } = useContext(GlobalVarContext)
+  const { navFilter, pageName, navColor } = useContext(GlobalVarContext)
   const { handleChange, query, inSearch } = useContext(SearchContext)
   const user = context?.user
   const navigate = useNavigate()

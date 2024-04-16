@@ -4,7 +4,6 @@ import { Aside } from './components/Aside/Aside'
 import { Nav } from './components/Nav/Nav'
 import { AuthProviderWrapper } from './contexts/auth.context'
 import AppRoutes from './routes/AppRoutes'
-import { useApp } from './hooks/UseApp' // Cambio de UseApp a useApp
 import { GlobalVarProviderWrapper } from './contexts/globalVar.context'
 import { PlayerTrack } from './components/PlayerTrack/PlayerTrack'
 import { TrackPlayProviderWrapper } from './contexts/trackPlaying'
@@ -13,7 +12,7 @@ import { SearchVarProviderWrapper } from './contexts/search.context'
 function App () {
   const location = useLocation()
   const isLoginRoute = location.pathname === '/login' || location.pathname === '/signup'
-  const { navColor, changeNavColor } = useApp()
+
   return (
     <>
       <AuthProviderWrapper>
@@ -34,8 +33,8 @@ function App () {
                   margin: '7px'
                 }}
               >
-                {!isLoginRoute && <Nav navColor={navColor} />}
-                <AppRoutes changeNavColor={changeNavColor} />
+                {!isLoginRoute && <Nav />}
+                <AppRoutes />
               </main>
             </SearchVarProviderWrapper>
           </GlobalVarProviderWrapper>

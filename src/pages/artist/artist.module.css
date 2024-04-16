@@ -30,6 +30,7 @@
     margin: 0;
     margin-bottom: 3px;
     font-weight: bold;
+    color: white;
   }
   .header p{
     margin: 0;
@@ -338,46 +339,7 @@
   transform: scale(105%);
 }
 
-.circle {
- width: 4.25em;
- transform-origin: center;
- animation: rotate4 2s linear infinite;
- position: absolute;
- left: 50%;
- top: 50%;
-}
 
-.circle {
- fill: none;
- stroke: #1fdf64;
- stroke-width: 2;
- stroke-dasharray: 1, 200;
- stroke-dashoffset: 0;
- stroke-linecap: round;
- animation: dash4 1.5s ease-in-out infinite;
-}
-
-@keyframes rotate4 {
- 100% {
-  transform: rotate(360deg);
- }
-}
-
-@keyframes dash4 {
- 0% {
-  stroke-dasharray: 1, 200;
-  stroke-dashoffset: 0;
- }
-
- 50% {
-  stroke-dasharray: 90, 200;
-  stroke-dashoffset: -35px;
- }
-
- 100% {
-  stroke-dashoffset: -125px;
- }
-}
 
 
 @media (max-width: 1200px) {

@@ -23,6 +23,8 @@ h3{
   cursor: pointer;
   margin-bottom: 10%;
   text-decoration: none;
+  display: flex;
+  align-items: flex-start;
   &:hover{
     transform: scale(104%);
   }

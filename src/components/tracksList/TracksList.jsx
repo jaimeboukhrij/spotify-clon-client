@@ -42,7 +42,7 @@ export function TracksList ({ tracks, setIsHoverTrack, children }) {
                 <div style={{ display: 'flex' }}>
                   {
                     artistName.map((ele, index) => {
-                      return <Link key={index}>{ele}{index < artistName.length - 1 && ','}</Link>
+                      return <Link to={`/artist/${owner[index].id}`} key={index}>{ele}{index < artistName.length - 1 && ','}</Link>
                     })
                   }
                 </div>

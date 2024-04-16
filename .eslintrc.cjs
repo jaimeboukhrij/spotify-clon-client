@@ -9,11 +9,14 @@ module.exports = {
   rules: {
     'react-refresh/only-export-components': [
       'warn',
-      { allowConstantExport: true },
+      { allowConstantExport: true, }
+
     ],
     'react/prop-types':"off",
     'react/no-unescaped-entities':"off",
     "react/react-in-jsx-scope":'off',
-    "react-hooks/exhaustive-deps":'off'
+    "react-hooks/exhaustive-deps":'off',
+    "operator-linebreak":'off'
+    
   },
 }

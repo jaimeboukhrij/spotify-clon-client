@@ -37,7 +37,7 @@ export function AllTracks ({ tracks, setIsHoverTrack, playListInfo }) {
         </p>
       </div>
       {
-      tracks.map(({ trackName, duration, date, trackId, artistTrack, artistTrackId, album, urlImg, isHover, idArtists }, index) => {
+      tracks.map(({ trackName, duration, date, trackId, artistTrack, artistTrackId, album, urlImg, isHover, albumId }, index) => {
         let artists = artistTrack.map((elem, index) => elem).join(',')
         if (artists.length > 20) { artists = `${artists.substring(0, 19)}...` }
         if (trackName.length > 25) { trackName = `${trackName.substring(0, 25)}...` }
@@ -85,7 +85,7 @@ export function AllTracks ({ tracks, setIsHoverTrack, playListInfo }) {
                 </p>
               </div>
             </div>
-            <Link className={styles.album}>{album.length > 20 ? `${album.substring(0, 15)}...` : album}</Link>
+            <Link to={`/album/${albumId}`} className={styles.album}>{album.length > 20 ? `${album.substring(0, 15)}...` : album}</Link>
             <p className={styles.date}>hace {transformDate(date)}</p>
             <p className={styles.duration}>
               <box-icon name='heart' color='white' className='icon' />

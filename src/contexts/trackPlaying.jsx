@@ -16,6 +16,7 @@ export function TrackPlayProviderWrapper ({ children }) {
   const [idPlayList, setIdPlayList] = useState()
   const [idArtist, setIdArtist] = useState()
   const [idAlbum, setIdAlbum] = useState()
+  // const [playOneTrack, setPlayOneTrack] = useState()
   const [volume, setVolumeTrack] = useState(1)
   const [duration, setDuration] = useState(0)
   const [currentTime, setCurrentTime] = useState(0)
@@ -61,7 +62,14 @@ export function TrackPlayProviderWrapper ({ children }) {
     }
   }
 
-  const handleAudioEnded = () => runNextTrack()
+  const handleAudioEnded = () => {
+    if (typeMusic === 'oneTrack') {
+      audioPlayer.pause()
+      setIsPlaying(false)
+    } else {
+      runNextTrack()
+    }
+  }
   const runNextTrack = () => {
     let getInfo
     if (typeMusic === 'artist') {
@@ -179,7 +187,8 @@ export function TrackPlayProviderWrapper ({ children }) {
         idArtist,
         idPlayListTrack: idPlayList,
         idAlbumTrack: idAlbum,
-        audioPlayer
+        audioPlayer,
+        typeMusic
       }}
     >
       {children}

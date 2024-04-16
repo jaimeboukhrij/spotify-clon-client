@@ -4,17 +4,20 @@ import { useParams } from 'react-router'
 import getPlayListByGenre from '../utils/getPlayListsByGenre'
 import { GlobalVarContext } from '../contexts/globalVar.context'
 import newSpotifyService from '../services/spotify.service'
+import { useBgNav } from './UseBgNav'
 
-export function useGenre (changeNavColor) {
+export function useGenre () {
   const [playlists, setPlayLists] = useState([])
   const [categoryName, setCategoryName] = useState(null)
   const [categoryImg, setCategoryImg] = useState(null)
   const [limit, setLimit] = useState(10)
-  const { randomBG, setRandomBG, setNavFilter, setPageName } = useContext(GlobalVarContext)
-
+  const { randomBG, setRandomBG, setPageName } = useContext(GlobalVarContext)
   const { idGenre } = useParams()
+  const outerDivName = 'sectionGenre'
+  const innerDivName = 'mainSectionGenre'
+  useBgNav({ bgColor: [randomBG], outerDivName, innerDivName })
+  useEffect(() => document.getElementById(outerDivName)?.scrollTo(0, 0), [])
   useEffect(() => {
-    changeNavColor('transparent')
     getPlayListByGenre(idGenre, setCategoryName, setPlayLists, limit)
     const container = document.getElementById('sectionGenre')
     const handleScroll = () => {
@@ -26,38 +29,16 @@ export function useGenre (changeNavColor) {
         })
       }
     }
-    const handleScroll2 = () => {
-      const outerDiv = document.getElementById('nav')
-      const innerDiv = document.getElementById('mainSectionGenre')
-
-      if (!outerDiv || !innerDiv) return
-
-      const outerDivRect = outerDiv.getBoundingClientRect()
-      const innerDivRect = innerDiv.getBoundingClientRect()
-
-      if (
-        innerDivRect.top >= outerDivRect.top
-      ) {
-        changeNavColor('transparent')
-        setNavFilter(false)
-      } else {
-        randomBG && changeNavColor(randomBG)
-        setNavFilter(true)
-      }
-    }
 
     if (document.getElementById('sectionGenre')) {
       document.getElementById('sectionGenre').addEventListener('scroll', handleScroll)
     }
-    if (document.getElementById('sectionGenre')) {
-      document.getElementById('sectionGenre').addEventListener('scroll', handleScroll2)
-    }
+
     return () => {
       if (container) container.removeEventListener('scroll', handleScroll)
-      changeNavColor('#121212')
-      setNavFilter(false)
+      // setNavFilter(false)
     }
-  }, [randomBG])
+  }, [playlists.length])
 
   useEffect(() => {
     if (categoryName) {
@@ -68,8 +49,7 @@ export function useGenre (changeNavColor) {
         })
         .catch(e => console.log(e))
     }
-  }, [categoryName])
-
+  }, [categoryName, idGenre])
   return {
     categoryName,
     playlists,

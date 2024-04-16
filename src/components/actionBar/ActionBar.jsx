@@ -6,7 +6,7 @@ export function ActionBar ({ idToPlay, playOneTrack, type }) {
   return (
     <article style={{ paddingLeft: '1%', display: 'flex', alignItems: 'center', gap: '25px' }}>
       <span
-        onClick={() => playOneTrack ? updateTrackPlaying(idToPlay) : runFirtsTrack(idToPlay, type)}
+        onClick={() => playOneTrack ? updateTrackPlaying(idToPlay, 0, 'oneTrack') : runFirtsTrack(idToPlay, type)}
         className={styles.playIcon}
       ><box-icon name={(isPlaying && idPlayListTrack === idToPlay) ? 'pause' : 'play'} size='40px' />
       </span>

@@ -5,7 +5,7 @@ import { TrackPlayingContext } from '../../contexts/trackPlaying'
 import { Link } from 'react-router-dom'
 import { VolumeBar } from '../VolumeBar/VolumeBar'
 export function PlayerTrack () {
-  const { trackPlaying, isPlaying, runTrack, runNextTrack, runPrevTrack, currentTime, duration } = useContext(TrackPlayingContext)
+  const { trackPlaying, isPlaying, runTrack, runNextTrack, runPrevTrack, currentTime, duration, typeMusic } = useContext(TrackPlayingContext)
   return (
     trackPlaying &&
       <footer className={styles.main}>
@@ -26,13 +26,24 @@ export function PlayerTrack () {
           </div>
         </article>
         <article style={{ width: '45%', flexDirection: 'column' }}>
-          <div className={styles.playIcons}>
-            <span><i
-              onClick={() => runPrevTrack(trackPlaying.id)}
-              style={{ fontSize: '36px' }}
-              className='material-icons skip_previous'
-                  >skip_previous
-            </i>
+          <div
+            className={styles.playIcons}
+          >
+            <span
+              style={{
+                cursor: typeMusic === 'oneTrack' ? 'no-drop' : 'pointer'
+              }}
+            >
+              <i
+                onClick={() => runPrevTrack(trackPlaying.id)}
+                style={{
+                  fontSize: '36px',
+                  pointerEvents: typeMusic === 'oneTrack' ? 'none' : 'auto',
+                  cursor: typeMusic === 'oneTrack' ? 'no-drop' : 'auto'
+                }}
+                className='material-icons skip_previous'
+              >skip_previous
+              </i>
             </span>
             <span><i
               onClick={() => runTrack()}
@@ -41,12 +52,19 @@ export function PlayerTrack () {
                   >{isPlaying ? 'pause_circle' : 'play_circle'}
             </i>
             </span>
-            <span><i
-              style={{ fontSize: '36px' }}
-              className='material-icons skip_next'
-              onClick={() => runNextTrack(trackPlaying.id)}
-                  >skip_next
-            </i>
+            <span
+              style={{
+                cursor: typeMusic === 'oneTrack' ? 'no-drop' : 'pointer'
+              }}
+            >
+              <i
+                style={{
+                  fontSize: '36px'
+                }}
+                className='material-icons skip_next'
+                onClick={() => runNextTrack(trackPlaying.id)}
+              >skip_next
+              </i>
             </span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', width: '100%', height: '10px', gap: '5px', justifyContent: 'center' }}>

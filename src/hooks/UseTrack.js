@@ -1,19 +1,28 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { getTrackInfo } from '../utils/getTrackInfo'
 import { getArtistinfo } from '../utils/getArtistInfo'
 import { getTracksRecomendations } from '../utils/getTracksRecomendations'
 import { getArtistTopTrack } from '../utils/getArtistTopTrack'
 import { getArtistAlbums } from '../utils/getArtistAlbums'
+import { getRelatedArtist } from '../utils/getRelatedArtist'
+import { useBgNav } from './UseBgNav'
+import { GlobalVarContext } from '../contexts/globalVar.context'
 
 export const useTrack = () => {
   const [trackInfo, setTrackInfo] = useState()
   const [artistsData, setArtistsData] = useState(null)
   const [artistAlbums, setArtistAlbum] = useState()
   const [divWidth, setDivWidth] = useState()
+  const [bgColor, setBgColor] = useState([])
   const { idTrack } = useParams()
+  const outerDivName = 'containerTracks'
+  const innerDivName = 'tracksOfTracks'
+  useBgNav({ bgColor, outerDivName, innerDivName })
+  const { setPageName } = useContext(GlobalVarContext)
 
   useEffect(() => {
+    document.getElementById(outerDivName)?.scrollTo(0, 0)
     getTrackInfo(idTrack)
       .then(data => data)
       .then(prevRes => {
@@ -35,8 +44,10 @@ export const useTrack = () => {
 
     return () => {
       window.removeEventListener('resize', handleResize)
+      setArtistsData(null)
     }
   }, [idTrack])
+  useEffect(() => setPageName(trackInfo?.name), [trackInfo])
 
   useEffect(() => {
     if (trackInfo) {
@@ -55,6 +66,7 @@ export const useTrack = () => {
     const artistDataPromises = trackInfo.owner.slice(0, 5).map(async owner => {
       const data = await getArtistinfo(owner[0])
       const topTracks = await getArtistTopTrack(owner[0])
+      const relatedArtists = await getRelatedArtist(owner[0])
       let topAlbums = await getArtistAlbums(owner[0])
       topAlbums = [...topAlbums.album, ...topAlbums.single]
       const transformTopTracks = topTracks.map((elem) => {
@@ -68,7 +80,7 @@ export const useTrack = () => {
           urlImg: elem.urlImg
         }
       })
-      return { data, topTracks: transformTopTracks, topAlbums }
+      return { data, topTracks: transformTopTracks, topAlbums, relatedArtists }
     })
 
     const artistData = await Promise.all(artistDataPromises)
@@ -87,6 +99,8 @@ export const useTrack = () => {
     artistsData,
     setIsHoverTrack,
     artistAlbums,
-    divWidth
+    divWidth,
+    bgColor,
+    setBgColor
   }
 }

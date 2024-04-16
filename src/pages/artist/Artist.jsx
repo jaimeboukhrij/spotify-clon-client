@@ -1,22 +1,18 @@
 import { ColorExtractor } from 'react-color-extractor'
 import { useArtist } from '../../hooks/UseArtist'
 import styles from './artist.module.css'
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { Header } from '../../components/Artist/Header'
 import { TrackPlayingContext } from '../../contexts/trackPlaying'
 import { Tracks } from '../../components/Artist/Tracks'
 import { RelatedArtist } from '../../components/Artist/RelatedArtist'
+import { Loader } from '../../components/loader/Loader'
 
-export function Artist ({ changeNavColor }) {
-  const { artist, setIsHoverTrack, artistRef, divWidth, loading, idArtist } = useArtist(changeNavColor)
-  const [bgColor, setBgColor] = useState()
+export function Artist () {
+  const { artist, setIsHoverTrack, artistRef, divWidth, loading, idArtist, bgColor, setBgColor } = useArtist()
   const { isPlaying, runFirtsTrack, idArtist: idArtistTrack, trackPlaying } = useContext(TrackPlayingContext)
   if (loading) {
-    return (
-      <svg viewBox='25 25 50 50' className={styles.circle}>
-        <circle r='20' cy='50' cx='50' className={styles.svg} />
-      </svg>
-    )
+    return <Loader />
   }
 
   return (
@@ -28,6 +24,7 @@ export function Artist ({ changeNavColor }) {
       {bgColor && artist.artistAppearsOn &&
         <section
           className={styles.container}
+          id='containerArtist'
           style={{
             background: `linear-gradient(${bgColor[0]}, rgba(0, 0, 0, .4) 57%)`,
             paddingBottom: trackPlaying ? '11%' : '36px'
@@ -36,7 +33,7 @@ export function Artist ({ changeNavColor }) {
         >
 
           <Header artist={artist} />
-          <section ref={artistRef} className={styles.mainSection}>
+          <section ref={artistRef} className={styles.mainSection} id='tracksArtist'>
             <article style={{ paddingLeft: '1%', display: 'flex', alignItems: 'center', gap: '25px' }}>
               <span
                 onClick={() => runFirtsTrack(idArtist, 'artist')}

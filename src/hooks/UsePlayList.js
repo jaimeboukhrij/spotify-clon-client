@@ -2,51 +2,29 @@ import { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import getTracksFromPlayList from '../utils/getTracksFromPlayList'
 import getPlayListInfo from '../utils/getPlayListInfo'
-import { GlobalVarContext } from '../contexts/globalVar.context'
 import { TrackPlayingContext } from '../contexts/trackPlaying'
+import { useBgNav } from './UseBgNav'
+import { GlobalVarContext } from '../contexts/globalVar.context'
 
-export function UsePlayList (changeNavColor) {
+export function UsePlayList () {
   const [tracks, setTracks] = useState([])
   const [playListInfo, setPlayListInfo] = useState([])
   const [bgColor, setBgColor] = useState([])
   const { idPlayList } = useParams()
-  const { setPageName, setNavFilter } = useContext(GlobalVarContext)
   const { updateTrackPlaying } = useContext(TrackPlayingContext)
+  const outerDivName = 'playListSection'
+  const innerDivName = 'allTracksContainer'
+  useBgNav({ bgColor, outerDivName, innerDivName })
+  const { setPageName } = useContext(GlobalVarContext)
 
   useEffect(() => {
-    changeNavColor('transparent')
+    document.getElementById(outerDivName)?.scrollTo(0, 0)
     getTracksFromPlayList(idPlayList).then(data => setTracks(data))
     getPlayListInfo(idPlayList, setPlayListInfo)
-    const container = document.getElementById('playListSection')
-    if (container) {
-      container.addEventListener('scroll', handleScroll)
-    }
+  }, [idPlayList])
 
-    return () => {
-      if (container) container.removeEventListener('scroll', handleScroll)
-      changeNavColor('#121212')
-    }
-  }, [bgColor, idPlayList])
+  useEffect(() => setPageName(playListInfo.name), [playListInfo])
 
-  const handleScroll = () => {
-    const outerDiv = document.getElementById('playListSection')
-    const innerDiv = document.getElementById('allTracksContainer')
-
-    if (!outerDiv || !innerDiv) return
-    const outerDivRect = outerDiv.getBoundingClientRect()
-    const innerDivRect = innerDiv.getBoundingClientRect()
-
-    if (
-      innerDivRect.top >= outerDivRect.top + 60
-    ) {
-      changeNavColor('transparent')
-      setNavFilter(false)
-    } else {
-      bgColor && changeNavColor(bgColor[0])
-      setPageName(playListInfo.name)
-      setNavFilter(true)
-    }
-  }
   const setIsHoverTrack = (trackIndex, isHover) => {
     setTracks(prevTracks => {
       const updatedTracks = [...prevTracks]

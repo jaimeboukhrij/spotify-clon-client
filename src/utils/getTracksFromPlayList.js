@@ -12,6 +12,7 @@ const getTracksFromPlayList = (idPlayList, setPlayLists) => {
           artistTrack: elem.track.artists.map(elem => elem.name),
           artistTrackId: elem.track.artists.map(elem => elem.id),
           album: elem.track.album.name,
+          albumId: elem.track.album.id,
           urlImg: elem.track.album?.images[0].url,
           duration: elem.track.duration_ms,
           date: elem.added_at,

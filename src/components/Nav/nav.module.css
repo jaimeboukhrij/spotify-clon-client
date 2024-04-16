@@ -178,11 +178,12 @@
   justify-content: space-around;
   border-radius: 0;
   width: 190px;
-  padding: 18px 2px;
+  padding: 1px 3px;
   color: hsla(0, 0%, 100%, .9);
   font-size: 0.9em;
   height: 120px;
   border-radius: 5px;
+  height: auto;
 }
 
 .nav .profileOptions div {

@@ -1,9 +1,8 @@
-import { useContext } from 'react'
-import { UseNav } from '../../hooks/UseNav'
+import { useContext, useState } from 'react'
 import styles from './nav.module.css'
 import { AuthContext } from '../../contexts/auth.context'
 export function Profile ({ profileName }) {
-  const { profileOptVisible, setProfileOptvisible } = UseNav()
+  const { profileOptVisible, setProfileOptvisible } = useState(false)
   const { deleteItem } = useContext(AuthContext)
   return (
     <>

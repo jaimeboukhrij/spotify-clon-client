@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-closing-tag-location */
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { Header } from '../../components/Album/Header'
 import { useAlbum } from '../../hooks/UseAlbum'
 import styles from './album.module.css'
@@ -8,9 +8,8 @@ import { TrackPlayingContext } from '../../contexts/trackPlaying'
 import { AllTracks } from '../../components/Album/AllTracks'
 import { numberDateToWriteDate } from '../../utils/numberDateToWriteDate'
 import { RelatedArtist } from '../../components/Artist/RelatedArtist'
-export function Album ({ changeNavColor }) {
-  const { albumInfo, albumTracks, setIsHoverTrack, idAlbum, artistdiscography, width } = useAlbum(changeNavColor)
-  const [bgColor, setBgColor] = useState()
+export function Album () {
+  const { albumInfo, albumTracks, setIsHoverTrack, idAlbum, artistdiscography, width, bgColor, setBgColor } = useAlbum()
   const { isPlaying, runFirtsTrack, idAlbumTrack, trackPlaying } = useContext(TrackPlayingContext)
 
   return (
@@ -29,11 +28,11 @@ export function Album ({ changeNavColor }) {
           paddingBottom: trackPlaying ? '11%' : '36px'
         }}
         className={styles.container}
-        id='playListSection'
+        id='albumContainer'
                   >
 
         <Header albumInfo={albumInfo} albumTracks={albumTracks} />
-        <section className={styles.mainSection}>
+        <section className={styles.mainSection} id='tracksOfAlbum'>
           <article style={{ paddingLeft: '1%', display: 'flex', alignItems: 'center', gap: '25px' }}>
             <span
               onClick={() => runFirtsTrack(idAlbum, 'album')}

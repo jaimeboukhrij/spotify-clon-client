@@ -1,6 +1,7 @@
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 import { getQuerySearched } from '../utils/getQuerySearched'
 import { useNavigate } from 'react-router'
+import { GlobalVarContext } from './globalVar.context'
 
 export const SearchContext = createContext()
 
@@ -12,8 +13,11 @@ export function SearchVarProviderWrapper ({ children }) {
 
   const navigate = useNavigate()
   const inSearch = /^\/search(\/.*)?$/.test(location.pathname)
+  const { setNavFilter, setNavColor } = useContext(GlobalVarContext)
 
   useEffect(() => {
+    inSearch && setNavColor('#121212')
+    setNavFilter(false)
     function handleResize () {
       const artistRef = document.getElementById('main')
       if (artistRef) {
@@ -27,8 +31,9 @@ export function SearchVarProviderWrapper ({ children }) {
 
     return () => {
       window.removeEventListener('resize', handleResize)
+      setNavColor('transparent')
     }
-  }, [])
+  }, [inSearch])
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
