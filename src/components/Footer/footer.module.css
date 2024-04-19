@@ -1,0 +1,30 @@
+.container{
+  background-color: transparent;
+  width: 100%;
+  margin-top: 70px;
+}
+.container .firstRow{
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2%;
+}
+.firstRow h6{
+  font-size: 18px;
+  margin: 0;
+}
+.firstRow p:hover{
+text-decoration: underline;
+color: rgba(255, 255, 255, 0.907);
+cursor: pointer;
+}
+
+.firstRow a{
+  background-color: #202020;
+  border-radius: 9999px;
+  padding: 8px;
+  cursor: pointer;
+}
+.firstRow a:hover{
+  background-color: #414040;
+
+}

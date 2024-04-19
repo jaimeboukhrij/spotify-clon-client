@@ -1,0 +1,78 @@
+.main{
+  min-width: 523px;
+  width: -webkit-fill-available;
+  height: -webkit-fill-available;
+  position: sticky;
+  min-width:500px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.header{
+  width: 97%;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 0px;
+  padding-top: 69px;
+  align-content: center;
+  justify-content: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+.header .eachElem{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: hsla(0, 0%, 100%, .07);
+  height: 50px;
+  margin: 10px 0;
+  width: 96%;
+  border-radius: 5px;
+  padding-right: 3px;
+  cursor: pointer;
+}
+.eachElem:hover{
+  transform: scale(102%);
+}
+.eachElem p{
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.eachElem img{
+  width: 50px;
+  height: 50px;
+}
+.playIcon{
+  background-color: #1fdf64;
+  border-radius: 9999px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  margin-bottom: -6px;
+  margin-right: 6px;
+  opacity: 0;
+  transition: 200ms;
+}
+.playIcon:hover{
+  transform: scale(110%);
+}
+
+.eachRelated:hover{
+  background-color: #29252591;
+
+}
+.eachElem:hover .playIcon {
+  opacity: 1;
+}
+
+
+@media (max-width: 1100px) {
+  .header{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

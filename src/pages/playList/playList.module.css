@@ -1,5 +1,11 @@
 .container{
   min-width: 523px;
+  width: -webkit-fill-available;
+  height: -webkit-fill-available;
+  position: sticky;
+  min-width:500px;
+  overflow-y: auto;
+  overflow-x: hidden;
 
 }
 .header{

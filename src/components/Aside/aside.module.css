@@ -89,6 +89,7 @@
           font-size: 12px;
           transition: 300ms;
           width: 64px;
+          font-weight: 700;
           &:hover{
           background-color: #444444;
           }
@@ -205,4 +206,16 @@ article{
 
     
   }
+}
+
+.resizeAside{
+  width: 3px;
+  height: 100%;
+  position: relative;
+  background-color: transparent;
+  left: 5px;
+  cursor: grab;
+}
+.resizeAside:hover{
+  background-color: #807a7a;
 }

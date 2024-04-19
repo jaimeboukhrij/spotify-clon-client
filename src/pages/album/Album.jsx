@@ -8,6 +8,7 @@ import { TrackPlayingContext } from '../../contexts/trackPlaying'
 import { AllTracks } from '../../components/Album/AllTracks'
 import { numberDateToWriteDate } from '../../utils/numberDateToWriteDate'
 import { RelatedArtist } from '../../components/Artist/RelatedArtist'
+import { Footer } from '../../components/Footer/Footer'
 export function Album () {
   const { albumInfo, albumTracks, setIsHoverTrack, idAlbum, artistdiscography, width, bgColor, setBgColor } = useAlbum()
   const { isPlaying, runFirtsTrack, idAlbumTrack, trackPlaying } = useContext(TrackPlayingContext)
@@ -25,7 +26,7 @@ export function Album () {
           minWidth: '500px',
           background: `linear-gradient(${bgColor[0]}, rgba(0, 0, 0, .4) 70%)`,
           overflow: 'hidden auto',
-          paddingBottom: trackPlaying ? '11%' : '36px'
+          marginBottom: trackPlaying ? '83px' : '0px'
         }}
         className={styles.container}
         id='albumContainer'
@@ -51,6 +52,7 @@ export function Album () {
           <RelatedArtist relatedArtist={artistdiscography} divWidth={width} url='album'>
             Mas de {albumInfo.name}
           </RelatedArtist>
+          <Footer />
         </section>
       </section>}
     </>

@@ -9,19 +9,22 @@ import { getArtistFeaturing } from '../utils/getArtistFeaturing'
 import { getArtistiscoveredOn } from '../utils/getArtistiscoveredOn'
 import { useBgNav } from './UseBgNav'
 import { GlobalVarContext } from '../contexts/globalVar.context'
+import userService from '../services/user.services'
+import { AuthContext } from '../contexts/auth.context'
 
 export function useArtist () {
   const { idArtist } = useParams()
   const [artist, setArtist] = useState()
+  const [headerInfo, setHeaderInfo] = useState()
   const [divWidth, setDivWidth] = useState()
-  const [loading, setLoading] = useState(true)
   const [bgColor, setBgColor] = useState()
-
+  const [followingArtist, setFollowingArtist] = useState(false)
   const outerDivName = 'containerArtist'
   const innerDivName = 'tracksArtist'
+  console.log(headerInfo, artist)
   useBgNav({ bgColor, outerDivName, innerDivName })
   const { setPageName } = useContext(GlobalVarContext)
-
+  const { user } = useContext(AuthContext)
   useEffect(() => {
     document.getElementById(outerDivName)?.scrollTo(0, 0)
   }, [idArtist])
@@ -47,42 +50,73 @@ export function useArtist () {
   }, [artist, idArtist])
 
   useEffect(() => {
-    setLoading(true)
-
-    const fetchData = async () => {
+    const fetchHeaderInfo = async () => {
       try {
-        const cachedArtistInfo = localStorage.getItem(`artist_${idArtist}`)
-        if (cachedArtistInfo) {
-          setArtist(JSON.parse(cachedArtistInfo))
-        } else {
-          const artistMainInfo = await getArtistinfo(idArtist)
-          const headerImage = await getHeaderImgArtis(idArtist)
-          const topTracks = await getArtistTopTrack(idArtist)
-          const relatedArtist = await getRelatedArtist(idArtist)
-          const artistAppearsOn = await getArtistAppearOn(idArtist)
-          const artistFeaturing = await getArtistFeaturing(idArtist)
-          const artistDiscoveredOn = await getArtistiscoveredOn(idArtist)
-          const artistInfo = {
-            ...artistMainInfo,
-            headerImage,
-            topTracks,
-            relatedArtist,
-            artistAppearsOn,
-            artistFeaturing,
-            artistDiscoveredOn
-          }
-          setArtist(artistInfo)
-          localStorage.setItem(`artist_${idArtist}`, JSON.stringify(artistInfo))
-        }
+        const artistMainInfo = await getArtistinfo(idArtist)
+        const headerImage = await getHeaderImgArtis(idArtist)
+        const headerInfo = { ...artistMainInfo, headerImage }
+        setHeaderInfo(headerInfo)
       } catch (error) {
-        console.error(error)
-      } finally {
-        setLoading(false)
+        console.log(error)
       }
     }
 
-    fetchData()
+    const fetchData = async () => {
+      try {
+        const topTracks = await getArtistTopTrack(idArtist)
+        const relatedArtist = await getRelatedArtist(idArtist)
+        const artistAppearsOn = await getArtistAppearOn(idArtist)
+        const artistFeaturing = await getArtistFeaturing(idArtist)
+        const artistDiscoveredOn = await getArtistiscoveredOn(idArtist)
+        const additionalInfo = {
+          topTracks,
+          relatedArtist,
+          artistAppearsOn,
+          artistFeaturing,
+          artistDiscoveredOn
+        }
+
+        setArtist(additionalInfo)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    const cachedArtistInfo = localStorage.getItem(`artist_${idArtist}`)
+    if (cachedArtistInfo) {
+      const parsedInfo = JSON.parse(cachedArtistInfo)
+      setArtist(parsedInfo)
+      setHeaderInfo({
+        headerImage: parsedInfo.headerImage,
+        followers: parsedInfo.followers,
+        genres: parsedInfo.genres,
+        id: parsedInfo.id,
+        name: parsedInfo.name
+      })
+    } else {
+      fetchHeaderInfo()
+      fetchData()
+    }
   }, [idArtist])
+
+  useEffect(() => {
+    const artistInfo = {
+      ...artist,
+      ...headerInfo
+    }
+    localStorage.setItem(`artist_${idArtist}`, JSON.stringify(artistInfo))
+  }, [artist])
+
+  useEffect(() => {
+    if (user) {
+      const userId = user._id
+      userService.getFavouriteArtists(userId).then(({ data }) => {
+        const filterData = data.some(elem => elem.id === idArtist)
+        console.log('...', filterData)
+        setFollowingArtist(filterData)
+      }
+      )
+    }
+  }, [user])
 
   const setIsHoverTrack = (trackIndex, isHover) => {
     setArtist((prevTracks) => {
@@ -91,14 +125,23 @@ export function useArtist () {
       return { ...prevTracks, topTracks: updatedTracks }
     })
   }
+  const saveFavourtieArtist = () => {
+    if (user) {
+      setFollowingArtist(!followingArtist)
+      const userId = user._id
+      userService.saveFavouriteArtist({ idArtist, headerInfo, userId, artist }).catch(e => console.log(e))
+    }
+  }
 
   return {
     artist,
     setIsHoverTrack,
     divWidth,
-    loading,
     idArtist,
     setBgColor,
-    bgColor
+    bgColor,
+    headerInfo,
+    saveFavourtieArtist,
+    followingArtist
   }
 }

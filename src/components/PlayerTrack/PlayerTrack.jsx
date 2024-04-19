@@ -16,8 +16,8 @@ export function PlayerTrack () {
               to={`/track/${trackPlaying.id}`}
             ><span>{trackPlaying.name.length > 20 ? `${trackPlaying.name.substring(0, 15)}...` : trackPlaying.name}</span></Link>
             <Link
-              to={`/artist/${trackPlaying.owner[0]}`}
-            ><p style={{ margin: '0' }}>{trackPlaying?.owner[1]}</p></Link>
+              to={`/artist/${trackPlaying.owner[0][0]}`}
+            ><p style={{ margin: '0' }}>{trackPlaying?.owner[0][1]}</p></Link>
           </div>
           <div
             style={{ cursor: 'pointer' }}
@@ -39,7 +39,7 @@ export function PlayerTrack () {
                 style={{
                   fontSize: '36px',
                   pointerEvents: typeMusic === 'oneTrack' ? 'none' : 'auto',
-                  cursor: typeMusic === 'oneTrack' ? 'no-drop' : 'auto'
+                  cursor: typeMusic === 'oneTrack' ? 'no-drop' : 'pointer'
                 }}
                 className='material-icons skip_previous'
               >skip_previous

@@ -24,6 +24,14 @@ class UserService {
   getrecentyListened (userId) {
     return this.api.get(`/recentyListened/${userId}`)
   }
+
+  saveFavouriteArtist (data) {
+    return this.api.put('/favouriteArtist', data)
+  }
+
+  getFavouriteArtists (userId) {
+    return this.api.get(`/favouriteArtist/${userId}`)
+  }
 }
 
 const userService = new UserService()

@@ -31,7 +31,6 @@ export function Track () {
               <TracksList tracks={artistsData?.[0]?.topTracks} setIsHoverTrack={setIsHoverTrack}>
                 Canciones populares de {artistsData?.[0]?.data.name}
               </TracksList>
-
               <RelatedArtist relatedArtist={artistAlbums?.album} divWidth={divWidth} url='album'>
                 <h2 style={{ paddingLeft: '1%' }}> Albumes populares de {artistsData?.[0]?.data.name}</h2>
               </RelatedArtist>

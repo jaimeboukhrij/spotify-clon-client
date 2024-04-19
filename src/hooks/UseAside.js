@@ -13,8 +13,11 @@ export function UseAside () {
   })
   const [isVisibleInput, setIsVisibleInput] = useState(false)
   const [recentlyListened, setRecentlyListened] = useState([])
+  const [filterListened, setFilterListened] = useState([])
+  const [filterType, setFilterType] = useState(null)
+  const [query, setQuery] = useState('')
   const { user } = useContext(AuthContext)
-  const { isPlaying, trackPlaying } = useContext(TrackPlayingContext)
+  const { isPlaying, trackPlaying, audioPlayer } = useContext(TrackPlayingContext)
 
   useEffect(() => {
     if (user) {
@@ -32,7 +35,43 @@ export function UseAside () {
         })
         .catch(e => console.log(e))
     }
-  }, [user, isPlaying, trackPlaying])
+  }, [user, isPlaying, trackPlaying, audioPlayer])
+  useEffect(() => {
+    filterRecentListened(filterType)
+  }, [query])
 
-  return { setSpanHover, spanHover, isVisibleInput, setIsVisibleInput, recentlyListened }
+  const filterRecentListened = (type) => {
+    setFilterType(type)
+
+    const data = recentlyListened.filter(elem => {
+      const lowercasedQuery = query ? query.toLowerCase() : ''
+
+      if (type && !query) {
+        return elem.typeMusic === type
+      } else if (!type && query) {
+        const stringElem = elem.name.toLowerCase()
+        return stringElem.includes(lowercasedQuery)
+      } else if (type && query) {
+        const stringElem = elem.name.toLowerCase()
+        return elem.typeMusic === type && stringElem.includes(lowercasedQuery)
+      } else {
+        return true // No hay filtro aplicado
+      }
+    })
+
+    setFilterListened(data)
+  }
+
+  return {
+    setSpanHover,
+    spanHover,
+    isVisibleInput,
+    setIsVisibleInput,
+    recentlyListened,
+    filterListened,
+    filterRecentListened,
+    filterType,
+    setQuery,
+    query
+  }
 }

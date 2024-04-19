@@ -15,22 +15,17 @@ export function PlayList () {
   return (
     <>
       <ColorExtractorComp urlImg={playListInfo.urlImg} setBgColor={setBgColor} />
-      {tracks.length
-        ?
-          <section
-            style={{
-              width: '-webkit-fill-available',
-              height: '-webkit-fill-available',
-              position: 'sticky',
-              minWidth: '500px',
-              background: `linear-gradient(${bgColor[0]}, rgba(0, 0, 0, .4) 70%)`,
-              overflow: 'hidden auto',
-              paddingBottom: trackPlaying ? '11%' : '36px'
 
-            }}
-            className={styles.container}
-            id='playListSection'
-          >
+      <section
+        style={{
+          background: `linear-gradient(${bgColor[0]}, rgba(0, 0, 0, .4) 70%)`,
+          paddingBottom: trackPlaying ? '11%' : '36px'
+        }}
+        className={styles.container}
+        id='playListSection'
+      >
+        {bgColor.length ?
+          <>
             <Header playListInfo={playListInfo} tracks={tracks} />
             <section className={styles.mainSection}>
               <ActionBar idToPlay={idPlayList} type='playlist' />
@@ -40,8 +35,9 @@ export function PlayList () {
                 playListInfo={playListInfo}
               />
             </section>
-          </section>
-        : <Loader />}
+          </>
+          : <Loader />}
+      </section>
     </>
   )
 }

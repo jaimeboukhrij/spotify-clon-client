@@ -12,7 +12,7 @@ export function AuthProviderWrapper ({ children }) {
   const navigate = useNavigate()
 
   useEffect(() => { authenticateUser() }, [])
-  useEffect(() => spotifyToken && localStorage.setItem('tokenSpotify', spotifyToken), [spotifyToken])
+  // useEffect(() => spotifyToken && localStorage.setItem('tokenSpotify', spotifyToken), [spotifyToken])
   const authenticateUser = () => {
     const token = localStorage.getItem('authToken')
     setLoadingLogIn(true)

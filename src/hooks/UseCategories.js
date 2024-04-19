@@ -24,7 +24,7 @@ export function UseCategories () {
     }
   }, [])
 
-  useEffect(() => localStorage.getItem('tokenSpotify') && getCategories(setAllCategories, limit), [limit, localStorage.getItem('tokenSpotify')])
+  useEffect(() => getCategories(setAllCategories, limit), [limit])
 
   return {
     allCategories

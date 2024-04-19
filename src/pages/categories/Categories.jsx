@@ -3,6 +3,7 @@ import { UseCategories } from '../../hooks/UseCategories'
 import styles from './categories.module.css'
 import { useContext } from 'react'
 import { TrackPlayingContext } from '../../contexts/trackPlaying'
+import { Footer } from '../../components/Footer/Footer'
 export function Categories () {
   const { allCategories } = UseCategories()
   const { trackPlaying } = useContext(TrackPlayingContext)
@@ -10,7 +11,6 @@ export function Categories () {
   return (
 
     <section style={{ overflow: 'hidden auto', height: '100%' }}>
-
       <h3>Explorar todo</h3>
       <section
         className={styles.section}
@@ -19,15 +19,17 @@ export function Categories () {
         {
           allCategories.map(({ name, urlImg, id }) => {
             return (
-              <Link to={`/genre/${id}`} key={id} style={{ backgroundImage: `url(${urlImg})` }} className={styles.eachCategory}>
+              <Link
+                to={`/genre/${id}`}
+                key={id} style={{ backgroundImage: `url(${urlImg})` }} className={styles.eachCategory}
+              >
                 <p>{name}</p>
               </Link>
             )
           })
       }
-
       </section>
-
+      <Footer />
     </section>
   )
 }

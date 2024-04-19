@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import authService from '../services/auth.services'
 import { AuthContext } from '../contexts/auth.context'
 import { useNavigate } from 'react-router'
@@ -12,16 +12,15 @@ export function useFormLogIn () {
     password: 'Spotify2024'
   })
   const navigate = useNavigate()
-  useEffect(() => {
-    getSpotifyToken()
-      .then(({ access_token }) => {
-        setSpotifyToken(access_token)
-      })
-      .catch(e => console.log(e))
-  }, [])
 
   const logIn = () => {
     setLoadingLogIn(true)
+    getSpotifyToken()
+      .then(({ access_token }) => {
+        setSpotifyToken(access_token)
+        localStorage.setItem('tokenSpotify', access_token)
+      })
+      .catch(e => console.log(e))
     authService
       .login(query)
       .then(({ data }) => {

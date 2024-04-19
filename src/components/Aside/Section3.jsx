@@ -4,13 +4,14 @@ import { SearchForm } from './SearchForm'
 import styles from './aside.module.css'
 import { useContext } from 'react'
 import { TrackPlayingContext } from '../../contexts/trackPlaying'
-export function Section3 ({ recentlyListened }) {
+export function Section3 ({ recentlyListened, filterListened, filterType, setQuery, query }) {
   const { isVisibleInput, setIsVisibleInput } = UseAside()
   const { isPlaying } = useContext(TrackPlayingContext)
+  const showRecentListened = (filterType || query) ? filterListened : recentlyListened
   return (
     <section className={styles.section3}>
       <article className={styles.header}>
-        <SearchForm isVisibleInput={isVisibleInput} setIsVisibleInput={setIsVisibleInput} />
+        <SearchForm isVisibleInput={isVisibleInput} setIsVisibleInput={setIsVisibleInput} setQuery={setQuery} query={query} />
         <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
           {
             isVisibleInput
@@ -30,7 +31,7 @@ export function Section3 ({ recentlyListened }) {
       }}
       >
         {
-          recentlyListened?.map(({ id, name, typeMusic, urlImg }) => {
+          showRecentListened?.map(({ id, name, typeMusic, urlImg }) => {
             return (
               <Link to={`${typeMusic}/${id}`} key={id} className={styles.card}>
                 <img
@@ -38,7 +39,7 @@ export function Section3 ({ recentlyListened }) {
                   style={{ borderRadius: typeMusic === 'artist' ? '50%' : '5px' }}
                 />
                 <span>
-                  <h5 style={{ fontSize: '15px' }}>{name}</h5>
+                  <h5 style={{ fontSize: '15px', color: 'white' }}>{name}</h5>
                   <p style={{ fontSize: '13px' }}>{typeMusic.charAt(0).toUpperCase() + typeMusic.slice(1)}</p>
                 </span>
               </Link>

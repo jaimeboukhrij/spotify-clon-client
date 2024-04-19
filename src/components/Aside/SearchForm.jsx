@@ -1,10 +1,13 @@
 import styles from './aside.module.css'
 
-export function SearchForm ({ isVisibleInput, setIsVisibleInput }) {
+export function SearchForm ({ isVisibleInput, setIsVisibleInput, setQuery, query }) {
   return (
 
     <>
-      <form className={styles.searchContainer} action='//llamaswill.tumblr.com/search'>
+      <form
+        className={styles.searchContainer} action='//llamaswill.tumblr.com/search'
+
+      >
         <label
           htmlFor='search-box' className={styles.searchLabel} onClick={() => setIsVisibleInput(true)}
           style={{
@@ -23,7 +26,9 @@ export function SearchForm ({ isVisibleInput, setIsVisibleInput }) {
           className={`${styles.searchBox} ${isVisibleInput ? styles.visible : ''}`}
           name='q'
           placeholder='Buscar en Tu biblioteca'
-          onBlur={() => setIsVisibleInput(false)}
+          onBlur={() => !query && setIsVisibleInput(false)}
+          onChange={(e) => setQuery(e.target.value)}
+          value={query}
         />
       </form>
     </>

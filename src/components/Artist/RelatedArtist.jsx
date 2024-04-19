@@ -7,17 +7,17 @@ export function RelatedArtist ({ relatedArtist, divWidth, circuleImg, children, 
   const { runFirtsTrack, isPlaying, idArtist, idPlayList } = useContext(TrackPlayingContext)
 
   return (
-
-    <article style={{ marginBottom: '30px' }}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }} className={styles.title}>
-        {children}
-        <h5 style={{ paddingRight: '3%' }}>Mostrar mas</h5>
-      </div>
-      <div
-        className={styles.relatedArtists}
-        style={{ gridTemplateColumns: `repeat(${parseInt(divWidth / 200)}, minmax(0, 1fr))` }}
-      >
-        {
+    relatedArtist?.length ?
+      <article style={{ marginBottom: '30px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }} className={styles.title}>
+          {children}
+          <h5 style={{ paddingRight: '3%' }}>Mostrar mas</h5>
+        </div>
+        <div
+          className={styles.relatedArtists}
+          style={{ gridTemplateColumns: `repeat(${parseInt(divWidth / 200)}, minmax(0, 1fr))` }}
+        >
+          {
           relatedArtist?.slice(0, parseInt(divWidth / 200)).map(({ id, name, urlImg, description }) => {
             description = description || 'Artista'
             if (description.length > 40) { description = `${description.substring(0, 40)}...` }
@@ -41,7 +41,9 @@ export function RelatedArtist ({ relatedArtist, divWidth, circuleImg, children, 
             )
           })
       }
-      </div>
-    </article>
+        </div>
+      </article>
+      : ''
+
   )
 }

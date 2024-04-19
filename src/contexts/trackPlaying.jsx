@@ -34,7 +34,6 @@ export function TrackPlayProviderWrapper ({ children }) {
     audioPlayer.addEventListener('ended', handleAudioEnded)
     audioPlayer.addEventListener('loadedmetadata', handleLoadedMetadata)
     audioPlayer.addEventListener('timeupdate', handleTimeUpdate)
-
     trackPlaying && saveRecentlyListended()
     return () => {
       audioPlayer.removeEventListener('ended', handleAudioEnded)
@@ -156,7 +155,7 @@ export function TrackPlayProviderWrapper ({ children }) {
         name = playlistInfo.name
       } else if (typeMusic === 'artist') {
         idMusic = idArtist
-        name = trackPlaying.owner[1]
+        name = trackPlaying.owner[0][1]
       } else if (typeMusic === 'album') {
         idMusic = idAlbum
         name = trackPlaying.album[1]

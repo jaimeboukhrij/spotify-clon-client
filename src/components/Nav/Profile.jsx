@@ -2,8 +2,9 @@ import { useContext, useState } from 'react'
 import styles from './nav.module.css'
 import { AuthContext } from '../../contexts/auth.context'
 export function Profile ({ profileName }) {
-  const { profileOptVisible, setProfileOptvisible } = useState(false)
+  const [profileOptVisible, setProfileOptvisible] = useState(false)
   const { deleteItem } = useContext(AuthContext)
+  console.log(profileOptVisible)
   return (
     <>
       <div

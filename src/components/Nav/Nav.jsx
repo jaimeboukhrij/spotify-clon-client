@@ -11,6 +11,7 @@ export function Nav () {
   const context = useContext(AuthContext)
   const { navFilter, pageName, navColor } = useContext(GlobalVarContext)
   const { handleChange, query, inSearch } = useContext(SearchContext)
+
   const user = context?.user
   const navigate = useNavigate()
   return (
