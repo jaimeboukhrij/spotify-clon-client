@@ -5,7 +5,7 @@ import { TrackPlayingContext } from '../../contexts/trackPlaying'
 import { Link } from 'react-router-dom'
 import { TracksList } from '../tracksList/TracksList'
 export function Header ({ searchInfo, setIsHoverTrack }) {
-  const { runFirtsTrack } = useContext(TrackPlayingContext)
+  const { runFirtsTrack, isPlaying, idArtist } = useContext(TrackPlayingContext)
 
   let artists, tracks
   if (searchInfo) {
@@ -28,7 +28,7 @@ export function Header ({ searchInfo, setIsHoverTrack }) {
               runFirtsTrack(artists?.[0].id, 'artist')
             }}
             className={styles.playIcon}
-          ><box-icon name='play' size='40px' />
+          ><box-icon name={isPlaying && idArtist === artists?.[0].id ? 'pause' : 'play'} size='40px' />
           </span>
         </div>
         <div className={styles.tracks}>

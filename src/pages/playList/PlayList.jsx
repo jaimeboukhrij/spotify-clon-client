@@ -32,7 +32,6 @@ export function PlayList () {
               <AllTracks
                 setIsHoverTrack={setIsHoverTrack} tracks={tracks}
                 updateTrackPlaying={updateTrackPlaying}
-                playListInfo={playListInfo}
               />
             </section>
           </>

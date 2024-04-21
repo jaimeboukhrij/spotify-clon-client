@@ -2,6 +2,9 @@ import { useEffect, useState, useContext } from 'react'
 import userService from '../services/user.services'
 import { AuthContext } from '../contexts/auth.context'
 import { TrackPlayingContext } from '../contexts/trackPlaying'
+import playListService from '../services/playList.service'
+import { useNavigate } from 'react-router-dom'
+import { GlobalVarContext } from '../contexts/globalVar.context'
 
 export function UseAside () {
   const [spanHover, setSpanHover] = useState({
@@ -15,9 +18,12 @@ export function UseAside () {
   const [recentlyListened, setRecentlyListened] = useState([])
   const [filterListened, setFilterListened] = useState([])
   const [filterType, setFilterType] = useState(null)
+  const [myPlayLists, setMyPlayLists] = useState([])
   const [query, setQuery] = useState('')
   const { user } = useContext(AuthContext)
   const { isPlaying, trackPlaying, audioPlayer } = useContext(TrackPlayingContext)
+  const { changeMyPlayLis } = useContext(GlobalVarContext)
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (user) {
@@ -34,8 +40,9 @@ export function UseAside () {
           setRecentlyListened(allData)
         })
         .catch(e => console.log(e))
+      getMyPlayLists()
     }
-  }, [user, isPlaying, trackPlaying, audioPlayer])
+  }, [user, isPlaying, trackPlaying, audioPlayer, changeMyPlayLis])
   useEffect(() => {
     filterRecentListened(filterType)
   }, [query])
@@ -61,6 +68,20 @@ export function UseAside () {
 
     setFilterListened(data)
   }
+  const createPlayList = () => {
+    if (user) {
+      playListService.createPlayList({ userId: user._id, length: myPlayLists.length })
+        .then(({ data }) => {
+          const id = data._id.toString()
+          setMyPlayLists(prev => [...prev, data])
+          navigate(`/myplaylist/${id}`)
+        })
+        .catch(e => console.log(e))
+    }
+  }
+  const getMyPlayLists = () => {
+    playListService.getMyPlayLists(user._id).then(({ data }) => setMyPlayLists(data))
+  }
 
   return {
     setSpanHover,
@@ -72,6 +93,8 @@ export function UseAside () {
     filterRecentListened,
     filterType,
     setQuery,
-    query
+    query,
+    createPlayList,
+    myPlayLists
   }
 }

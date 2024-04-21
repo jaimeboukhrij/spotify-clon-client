@@ -6,7 +6,7 @@ import { transformDate } from '../../utils/transformDate'
 import { useContext } from 'react'
 import { TrackPlayingContext } from '../../contexts/trackPlaying'
 
-export function AllTracks ({ tracks, setIsHoverTrack, playListInfo }) {
+export function AllTracks ({ tracks, setIsHoverTrack, tracksIds, deleteTrack }) {
   const { updateTrackPlaying, isPlaying, trackPlaying } = useContext(TrackPlayingContext)
 
   return (
@@ -37,11 +37,11 @@ export function AllTracks ({ tracks, setIsHoverTrack, playListInfo }) {
         </p>
       </div>
       {
-      tracks.map(({ trackName, duration, date, trackId, artistTrack, artistTrackId, album, urlImg, isHover, albumId }, index) => {
-        let artists = artistTrack.map((elem, index) => elem).join(',')
-        if (artists.length > 20) { artists = `${artists.substring(0, 19)}...` }
-        if (trackName.length > 25) { trackName = `${trackName.substring(0, 25)}...` }
-        const arrArtist = artists.split(',')
+      tracks?.map(({ trackName, duration, date, trackId, artistTrack, artistTrackId, album, urlImg, isHover, albumId }, index) => {
+        let artists = artistTrack?.map((elem, index) => elem).join(',')
+        if (artists?.length > 20) { artists = `${artists.substring(0, 19)}...` }
+        if (trackName?.length > 25) { trackName = `${trackName.substring(0, 25)}...` }
+        const arrArtist = artists?.split(',')
 
         return (
           <div
@@ -88,7 +88,15 @@ export function AllTracks ({ tracks, setIsHoverTrack, playListInfo }) {
             <Link to={`/album/${albumId}`} className={styles.album}>{album.length > 20 ? `${album.substring(0, 15)}...` : album}</Link>
             <p className={styles.date}>hace {transformDate(date)}</p>
             <p className={styles.duration}>
-              <box-icon name='heart' color='white' className='icon' />
+              {
+                tracksIds?.includes(trackId)
+                  ? <i onClick={() => deleteTrack(trackId)}>
+                    <box-icon name='trash' color='red' className='icon' />
+                  </i>
+                  : <i>
+                    <box-icon name='heart' color='white' className='icon' />
+                  </i>
+                }
               {secondsToMinute(duration)}
             </p>
           </div>

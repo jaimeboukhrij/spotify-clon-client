@@ -9,20 +9,25 @@ import { Track } from '../pages/track/Track'
 import { Artist } from '../pages/artist/Artist'
 import { Album } from '../pages/album/Album'
 import { Search } from '../pages/search/Search'
+import PrivateRoute from './PrivateRoutes'
+import { CreatePlayList } from '../pages/createPlayList/CreatePlayList'
 
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path='/' element={<Home />} />
       <Route path='/login' element={<LogIn />} />
-      <Route path='/search' element={<Categories />} />
-      <Route path='/search/:query' element={<Search />} />
       <Route path='/signup' element={<SignUp />} />
-      <Route path='/album/:idAlbum' element={<Album />} />
-      <Route path='/genre/:idGenre' element={<Genre />} />
-      <Route path='/playlist/:idPlayList' element={<PlayList />} />
-      <Route path='/track/:idTrack' element={<Track />} />
-      <Route path='/artist/:idArtist' element={<Artist />} />
+      <Route element={<PrivateRoute />}>
+        <Route path='/' element={<Home />} />
+        <Route path='/search' element={<Categories />} />
+        <Route path='/search/:query' element={<Search />} />
+        <Route path='/album/:idAlbum' element={<Album />} />
+        <Route path='/genre/:idGenre' element={<Genre />} />
+        <Route path='/playlist/:idPlayList' element={<PlayList />} />
+        <Route path='/track/:idTrack' element={<Track />} />
+        <Route path='/artist/:idArtist' element={<Artist />} />
+        <Route path='/myplaylist/:idPlayList' element={<CreatePlayList />} />
+      </Route>
     </Routes>
   )
 }

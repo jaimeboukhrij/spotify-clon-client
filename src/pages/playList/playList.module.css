@@ -74,40 +74,40 @@
     flex-direction: column;
   }
 
-  .mainSection .allTracks{
+ .allTracks{
     display: flex;
     flex-direction: column;
   }
-  .mainSection .eachTrack{
+  .allTracks .eachTrack{
     display: flex;
     flex-direction: row;
     width: 100%;
     gap: 20px;
     padding: 1%;
   }
-  .mainSection .eachTrack:hover{
+  .allTracks .eachTrack:hover{
     background-color: hsla(0, 0%, 100%, .1);
     cursor: pointer;
     border-radius: 5px;
   }
-  .mainSection .eachTrack:hover  .duration box-icon{
+  .allTracks .eachTrack:hover  .duration box-icon{
     opacity: 1;
   }
 
-  .mainSection .tittle{
+  .allTracks .tittle{
     display: flex;
     align-items: center;
     width: 36%;
     gap: 10px;
     min-width: 246px;
   }
-  .mainSection p{
+  .allTracks p{
     font-size: 14px;
     align-content: center;
     font-weight: 600;
   }
-  .mainSection .tittle p,
-  .mainSection  a {
+  .allTracks .tittle p,
+  .allTracks  a {
     margin: 2px;
     font-size: 15px;
     color:#a7a7a7 ;
@@ -115,37 +115,37 @@
     display: flex;
     align-items: center;
   }
-  .mainSection  a:hover {
+  .allTracks  a:hover {
    text-decoration: underline;
    cursor: pointer;
   }
-  mainSection .tittle img{
+  .allTracks .tittle img{
     width: 40px;
     height: 40px;
   }
-  .mainSection .artists{
+  .allTracks .artists{
     display: flex;
   }
 
-  .mainSection .album,
-  .mainSection .date{
+  .allTracks .album,
+  .allTracks .date{
     width: 18%;
     display: flex;
   }
-  .mainSection .duration{
+  .allTracks .duration{
     width: 15%;
     display: flex;
     align-items: center;
     gap: 15px;
   }
-  .mainSection .duration box-icon{
+  .allTracks .duration box-icon{
     opacity: 0;
   }
-  .mainSection .duration box-icon #icon{
+  .allTracks .duration box-icon #icon{
     fill: red;
 
   }
-  .mainSection .index{
+  .allTracks .index{
     width: 5%;
     font-weight: bold;
     font-size: 15px;

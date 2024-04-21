@@ -16,6 +16,10 @@ export function SearchVarProviderWrapper ({ children }) {
   const { setNavFilter, setNavColor } = useContext(GlobalVarContext)
 
   useEffect(() => {
+    setQuery('')
+    navigate('/search')
+  }, [])
+  useEffect(() => {
     inSearch && setNavColor('#121212')
     setNavFilter(false)
     function handleResize () {
@@ -49,7 +53,7 @@ export function SearchVarProviderWrapper ({ children }) {
     if (debouncedValue || query) {
       debouncedValue && getQuerySearched(debouncedValue).then(data => {
         setSearchInfo(data)
-        navigate(`/search/${query}`)
+        inSearch && navigate(`/search/${query}`)
       }).catch(e => console.log(e))
     } else {
       setSearchInfo(null)

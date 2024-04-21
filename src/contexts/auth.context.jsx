@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { createContext, useEffect, useState } from 'react'
 import authService from '../services/auth.services'
 import { useNavigate } from 'react-router'
@@ -26,7 +27,9 @@ export function AuthProviderWrapper ({ children }) {
         .catch(({ data }) => {
           navigate('/login')
           setLoadingLogIn(false)
+          console.log('dentro')
           localStorage.removeItem('authToken')
+          localStorage.removeItem('tokenSpotify')
         })
     } else {
       setUser(null)

@@ -2,11 +2,14 @@ import { Link } from 'react-router-dom'
 import { UseAside } from '../../hooks/UseAside'
 import { SearchForm } from './SearchForm'
 import styles from './aside.module.css'
+import logoMusica from '../../assets/logoMusica.jpg'
 import { useContext } from 'react'
 import { TrackPlayingContext } from '../../contexts/trackPlaying'
-export function Section3 ({ recentlyListened, filterListened, filterType, setQuery, query }) {
+import { AuthContext } from '../../contexts/auth.context'
+export function Section3 ({ recentlyListened, filterListened, filterType, setQuery, query, myPlayLists }) {
   const { isVisibleInput, setIsVisibleInput } = UseAside()
   const { isPlaying } = useContext(TrackPlayingContext)
+  const { user } = useContext(AuthContext)
   const showRecentListened = (filterType || query) ? filterListened : recentlyListened
   return (
     <section className={styles.section3}>
@@ -26,10 +29,28 @@ export function Section3 ({ recentlyListened, filterListened, filterType, setQue
         flexDirection: 'column',
         gap: '10px',
         paddingLeft: '3%',
-        maxHeight: isPlaying ? '445px' : 'none',
+        paddingBottom: isPlaying ? '80px' : 'none',
         overflowY: 'auto'
       }}
       >
+        {
+        myPlayLists.map(({ _id: id, name, typeMusic = 'palylist', urlImg }) => {
+          urlImg = urlImg || logoMusica
+          return (
+            <Link to={`myplaylist/${id}`} key={id} className={styles.card}>
+              <img
+                src={urlImg} alt={`${name} image`}
+                style={{ borderRadius: typeMusic === 'artist' ? '50%' : '5px' }}
+              />
+              <span>
+                <h5 style={{ fontSize: '15px', color: 'white' }}>{name}</h5>
+                <p style={{ fontSize: '13px' }}>{typeMusic.charAt(0).toUpperCase() + typeMusic.slice(1) + '~' + user.profileName}</p>
+              </span>
+            </Link>
+          )
+        })
+
+        }
         {
           showRecentListened?.map(({ id, name, typeMusic, urlImg }) => {
             return (

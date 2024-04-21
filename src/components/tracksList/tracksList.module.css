@@ -85,6 +85,27 @@ cursor: pointer;
   fill: red;
 
 }
+.eachTrack .addTrack{
+  width: 15%;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.eachTrack .addTrack button{
+  border: 1px solid rgb(174, 174, 174);
+  background-color: #121212;
+  color: white;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 8px 15px;
+  cursor: pointer;
+}
+.eachTrack .addTrack button:hover{
+  border-color: white;
+  transform: scale(105%);
+}
+
 .eachTrack .index{
   width: 50px;
   background-size: contain;

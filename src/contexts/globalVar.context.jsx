@@ -7,6 +7,7 @@ export function GlobalVarProviderWrapper ({ children }) {
   const [navFilter, setNavFilter] = useState(false)
   const [pageName, setPageName] = useState(null)
   const [navColor, setNavColor] = useState('transparent')
+  const [changeMyPlayLis, setChangeMyPL] = useState(false)
   return (
     <GlobalVarContext.Provider value={{
       randomBG,
@@ -16,7 +17,9 @@ export function GlobalVarProviderWrapper ({ children }) {
       pageName,
       setPageName,
       navColor,
-      setNavColor
+      setNavColor,
+      changeMyPlayLis,
+      setChangeMyPL
     }}
     >
       {children}

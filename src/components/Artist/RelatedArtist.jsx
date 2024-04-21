@@ -4,7 +4,8 @@ import styles from '../../pages/artist/artist.module.css'
 import { Link } from 'react-router-dom'
 
 export function RelatedArtist ({ relatedArtist, divWidth, circuleImg, children, url }) {
-  const { runFirtsTrack, isPlaying, idArtist, idPlayList } = useContext(TrackPlayingContext)
+  const { runFirtsTrack, isPlaying, idArtist, idPlayList, idAlbum } = useContext(TrackPlayingContext)
+  console.log(idArtist, idPlayList, idAlbum)
 
   return (
     relatedArtist?.length ?
@@ -31,7 +32,13 @@ export function RelatedArtist ({ relatedArtist, divWidth, circuleImg, children, 
                       runFirtsTrack(id, url)
                     }}
                     className={styles.playIcon}
-                  ><box-icon name={(!isPlaying || !(idArtist === id || idPlayList === id)) ? 'play' : 'pause'} size='40px' />
+                  >
+                    <box-icon
+                      name={isPlaying && (idArtist === id || idPlayList === id || idAlbum === id)
+                        ? 'pause'
+                        : 'play'}
+                      size='40px'
+                    />
                   </span>
                 </div>
                 <h4 style={{ margin: '0', marginBottom: '6px', paddingLeft: '8%', color: 'white' }}>{name}</h4>

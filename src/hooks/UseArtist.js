@@ -21,7 +21,6 @@ export function useArtist () {
   const [followingArtist, setFollowingArtist] = useState(false)
   const outerDivName = 'containerArtist'
   const innerDivName = 'tracksArtist'
-  console.log(headerInfo, artist)
   useBgNav({ bgColor, outerDivName, innerDivName })
   const { setPageName } = useContext(GlobalVarContext)
   const { user } = useContext(AuthContext)
@@ -103,7 +102,7 @@ export function useArtist () {
       ...artist,
       ...headerInfo
     }
-    localStorage.setItem(`artist_${idArtist}`, JSON.stringify(artistInfo))
+    artistInfo && localStorage.setItem(`artist_${idArtist}`, JSON.stringify(artistInfo))
   }, [artist])
 
   useEffect(() => {
@@ -111,7 +110,6 @@ export function useArtist () {
       const userId = user._id
       userService.getFavouriteArtists(userId).then(({ data }) => {
         const filterData = data.some(elem => elem.id === idArtist)
-        console.log('...', filterData)
         setFollowingArtist(filterData)
       }
       )

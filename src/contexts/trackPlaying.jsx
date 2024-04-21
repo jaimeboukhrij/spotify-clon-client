@@ -6,6 +6,7 @@ import userService from '../services/user.services'
 import { AuthContext } from './auth.context'
 import getTracksFromAlbum from '../utils/getTracksFromAlbum'
 import getPlayListInfo from '../utils/getPlayListInfo'
+import { getMyPlayListTracks } from '../utils/getMyPlayListTracks'
 
 export const TrackPlayingContext = createContext()
 
@@ -28,7 +29,6 @@ export function TrackPlayProviderWrapper ({ children }) {
     if (idArtist) { setIdArtist(idArtist) }
     getTrackInfo(idTrack, setTrackPlaying)
   }
-
   useEffect(() => {
     trackPlaying && runTrack()
     audioPlayer.addEventListener('ended', handleAudioEnded)
@@ -77,6 +77,8 @@ export function TrackPlayProviderWrapper ({ children }) {
       getInfo = getTracksFromPlayList(idPlayList)
     } else if (typeMusic === 'album') {
       getInfo = getTracksFromAlbum(idAlbum)
+    } else if (typeMusic === 'myplaylist') {
+      getInfo = getMyPlayListTracks(idPlayList)
     }
     getInfo.then((data) => {
       const index = data.findIndex((obj) => obj.trackId === trackPlaying.id) + 1
@@ -94,6 +96,8 @@ export function TrackPlayProviderWrapper ({ children }) {
       getInfo = getTracksFromPlayList(idPlayList)
     } else if (typeMusic === 'album') {
       getInfo = getTracksFromAlbum(idAlbum)
+    } else if (typeMusic === 'myplaylist') {
+      getInfo = getMyPlayListTracks(idPlayList)
     }
     getInfo.then((data) => {
       const index = data.findIndex((obj) => obj.trackId === trackPlaying.id) - 1
@@ -123,6 +127,11 @@ export function TrackPlayProviderWrapper ({ children }) {
         setIdAlbum(id)
         setIdArtist(null)
         setIdPlayList(null)
+      } else if (type === 'myplaylist') {
+        getInfo = getMyPlayListTracks(id)
+        setIdAlbum(null)
+        setIdArtist(null)
+        setIdPlayList(id)
       }
       getInfo.then((data) => {
         updateTrackPlaying(data[0].trackId)

@@ -11,7 +11,7 @@ import { Loader } from '../../components/loader/Loader'
 export function Artist () {
   const { artist, setIsHoverTrack, artistRef, divWidth, idArtist, bgColor, setBgColor, headerInfo, saveFavourtieArtist, followingArtist } = useArtist()
   const { isPlaying, runFirtsTrack, idArtist: idArtistTrack, trackPlaying } = useContext(TrackPlayingContext)
-
+  console.log(artist)
   return (
     <>
 

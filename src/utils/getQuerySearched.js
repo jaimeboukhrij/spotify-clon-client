@@ -29,15 +29,16 @@ export function getQuerySearched (query) {
         isHover: false
       }))
 
-      const tracks = data.tracks.items.slice(0, 10).map(elem => ({
+      const tracksMap = data.tracks.items.map(elem => ({
         id: elem.id,
         name: elem.name,
         owner: elem.artists.map(artist => ({ id: artist.id, name: artist.name })),
         urlImg: elem.album.images[0]?.url,
         duration: elem.duration_ms,
-        urlTrack: data.preview_url,
+        urlTrack: elem.preview_url,
         isHover: false
       }))
+      const tracks = tracksMap.filter(elem => elem.urlTrack)
       return { albums, artists, playLists, tracks }
     })
     .then(firstData => {

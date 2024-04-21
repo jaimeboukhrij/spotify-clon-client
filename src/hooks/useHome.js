@@ -1,8 +1,10 @@
+/* eslint-disable camelcase */
 import { useContext, useEffect, useState } from 'react'
 import { idRecomPlayList, idPopularRadios } from '../constants'
 import getPlayListInfo from '../utils/getPlayListInfo'
 import userService from '../services/user.services'
 import { AuthContext } from '../contexts/auth.context'
+import { getSpotifyToken } from '../services/getSpotifyToken.service'
 export function useHome () {
   const [playListInfo, setPlayListInfo] = useState([])
   const [favouriteArtists, setFavouritesArtists] = useState([])
@@ -11,8 +13,24 @@ export function useHome () {
   const [recentListened, setRecentListened] = useState([])
   const [imgColor, setImgColor] = useState()
   const [bgColor, setBgColor] = useState(['gray'])
-  const { user } = useContext(AuthContext)
+  const { user, spotifyToken, setSpotifyToken } = useContext(AuthContext)
 
+  useEffect(() => {
+    const reloadPage = () => {
+      localStorage.removeItem('tokenSpotify')
+      getSpotifyToken()
+        .then(({ access_token }) => {
+          setSpotifyToken(access_token)
+          localStorage.setItem('tokenSpotify', access_token)
+        })
+        .catch(e => console.log(e))
+        .finally(() => {
+          window.location.reload()
+        })
+    }
+
+    setInterval(reloadPage, 3540000)
+  }, [])
   useEffect(() => {
     if (user) {
       getPlayListData(idRecomPlayList, setPlayListInfo)
@@ -35,7 +53,7 @@ export function useHome () {
     return () => {
       window.removeEventListener('resize', handleResize)
     }
-  }, [user])
+  }, [user, spotifyToken])
 
   async function getPlayListData (list, state) {
     const allData = list.map(async elem => {

@@ -4,13 +4,14 @@ import styles from './tracksList.module.css'
 import { TrackPlayingContext } from '../../contexts/trackPlaying'
 import { Link } from 'react-router-dom'
 import { secondsToMinute } from '../../utils/secondsToMinute'
-export function TracksList ({ tracks, setIsHoverTrack, children }) {
+export function TracksList ({ tracks, children, limit, addTrack, tracksIds }) {
   const { updateTrackPlaying, isPlaying, trackPlaying } = useContext(TrackPlayingContext)
+  limit = limit || 5
 
   return (
     <div style={{ marginTop: '20px' }}>
       {children && <h4 style={{ fontSize: '25px', margin: '0', marginBottom: '10px' }}>{children}</h4>}
-      {tracks?.slice(0, 5).map(({ name, duration, id, isHover, owner, urlImg }, index) => {
+      {tracks?.slice(0, limit).map(({ name, duration, id, isHover, owner, urlImg }, index) => {
         const artistName = owner.slice(0, 2).map(elem => elem.name)
         return (
           <div key={id} className={styles.eachTrack}>
@@ -48,10 +49,12 @@ export function TracksList ({ tracks, setIsHoverTrack, children }) {
                 </div>
               </div>
             </article>
-            <p className={styles.duration}>
-              <box-icon name='heart' color='white' className='icon' />
-              {secondsToMinute(duration)}
-            </p>
+            {addTrack && !tracksIds?.includes(id)
+              ? <span className={styles.addTrack} onClick={() => addTrack(id)}> <button>Añadir</button></span>
+              : <p className={styles.duration}>
+                <box-icon name='heart' color='white' className='icon' />
+                {secondsToMinute(duration)}
+              </p>}
           </div>
         )
       })}

@@ -1,0 +1,253 @@
+.container{
+  min-width: 523px;
+  width: -webkit-fill-available;
+  height: -webkit-fill-available;
+  position: sticky;
+  min-width:500px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.header{
+  width: 100%;
+  height: 340px;
+  /* background: linear-gradient(#4a4a4a 0, rgba(7, 7, 7, 0.852) 125%); */
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  padding-left: 2%;
+  padding-bottom: 2%;
+  gap: 20px;
+}
+.addPhoto{
+  width: 21%;
+  aspect-ratio: 1;
+  background-color: #211f1f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 231px;
+  min-width: 130px;
+  cursor: pointer;
+  background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 5px;
+}
+.addPhoto span{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.addPhoto i{
+  display: flex;
+  flex-direction: column;
+}
+.addPhoto i p{
+  color: white;
+}
+
+.info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+.info h2{
+  font-size: 100px;
+  margin: 0;
+  cursor: pointer;
+}
+.info span{
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.modalContainer{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 480px;
+  height: 342px;
+  background-color: #282828;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 30px;
+}
+
+.modalContainer .firstSection{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 26px;
+}
+.firstSection h5{
+  font-size: 23px;
+  margin: 0;
+  font-weight: 700;  
+}
+
+.secondSection{
+  display: flex;
+  gap: 15px;
+  margin-bottom: 5px;
+}
+.titleInput {
+  display: block;
+  position: relative;
+}
+
+.titleInput input {
+  background: hsla(0, 0%, 100%, .1);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  height: 40px;
+  padding: 0 8px;
+  width: 95%;
+  color: white;
+  font-weight: 700;
+}
+
+.titleInput .label {
+  position: absolute;
+  top: -6px;
+  left: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: #c8c6c6;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.titleInput input:focus {
+  background-color: #333;
+  border: 1px solid #535353;
+  outline: none;
+}
+
+.titleInput input:focus+.label {
+  opacity: 1;
+}
+
+.titleInput input::placeholder {
+  color: white;
+  font-weight: 700;
+}
+
+.textInput{
+  height: 119px;
+}
+.textInput textarea{
+  background: hsla(0, 0%, 100%, .1);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  height: 68%;
+  padding: 8px 8px 28px;
+  resize: none;
+  width: 95%;
+
+  font-weight: 500;
+}
+.textInput textarea:focus{
+  background-color: #333;
+  border: 1px solid #535353;
+  outline: none
+}
+
+.textInput textarea::placeholder{
+  font-size: 14px;
+
+}
+
+.thirdSection{
+  display: flex;
+  justify-content: flex-end;
+}
+.thirdSection button{
+  color: black;
+  background-color: white;
+  border-color: transparent;
+  border-radius: 9999px;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 14px 32px;
+}
+.thirdSection button:hover{
+  cursor: pointer;
+  transform: scale(104%);
+}
+
+.aviso{
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 15px;
+  margin-top: 22px;
+}
+.searchContainer {
+  position: relative;
+  display: flex;
+  width: 64%;
+}
+
+.searchLabel {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  transition: 300ms;
+  
+  &:hover{
+    border-radius: 20px;
+    background-color: hsla(0,0%,100%,.1);
+
+  }
+}
+
+.searchBox {
+  width: 0; 
+  opacity: 0;
+  transition: width 0.5s ease, opacity 0.5s ease; 
+  background-color: hsla(0,0%,100%,.1);
+  border: 0;
+  border-radius: 4px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  color: white;
+  font-weight: 700;
+  overflow: hidden; 
+  &:focus-visible {
+    outline: none; 
+  }
+}
+
+.visible {
+  width: 48%;
+  opacity: 1;
+  background-color: hsla(0, 0%, 100%, .1);
+  border: 0;
+  border-radius: 4px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  color: white;
+  font-weight: 700;
+  height: 36px;
+  &:focus {
+    box-shadow: inset 0 0 0 2px transparent;
+  }
+}
+
+
+.AddTracks{
+  padding-left: 3%;
+}

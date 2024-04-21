@@ -16,7 +16,7 @@ export function Header ({ artist }) {
           <p>Artista verificado</p>
         </div>
         <h2>{artist?.name}</h2>
-        <p>{artist?.followers.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')} oyentes mensuales </p>
+        <p>{artist?.followers?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')} oyentes mensuales </p>
       </article>
     </header>
   )
