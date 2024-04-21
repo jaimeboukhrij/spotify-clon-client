@@ -1,19 +1,19 @@
 import { Header } from '../../components/Track/Header'
 import { useTrack } from '../../hooks/UseTrack'
 import styles from './track.module.css'
-import { ColorExtractor } from 'react-color-extractor'
 import { ActionBar } from '../../components/actionBar/ActionBar'
 import { Artists } from '../../components/Track/Artists'
 import { TracksList } from '../../components/tracksList/TracksList'
 import { RelatedArtist } from '../../components/Artist/RelatedArtist'
 import { Loader } from '../../components/loader/Loader'
+import ColorExtractorComp from '../../components/colorExtractor/ColorExtractorComp'
 export function Track () {
   const { trackInfo, artistsData, setIsHoverTrack, artistAlbums, divWidth, bgColor, setBgColor } = useTrack()
   return (
     <>
-      <ColorExtractor getColors={colors => setBgColor(colors)}>
-        <img src={trackInfo?.urlImg} alt='cooolorImg' style={{ display: 'none' }} />
-      </ColorExtractor>
+
+      <ColorExtractorComp setBgColor={setBgColor} urlImg={trackInfo?.urlImg} />
+
       {artistsData?.length
         ?
           <section

@@ -1,4 +1,3 @@
-import { ColorExtractor } from 'react-color-extractor'
 import { useArtist } from '../../hooks/UseArtist'
 import styles from './artist.module.css'
 import { useContext } from 'react'
@@ -7,6 +6,7 @@ import { TrackPlayingContext } from '../../contexts/trackPlaying'
 import { Tracks } from '../../components/Artist/Tracks'
 import { RelatedArtist } from '../../components/Artist/RelatedArtist'
 import { Loader } from '../../components/loader/Loader'
+import ColorExtractorComp from '../../components/colorExtractor/ColorExtractorComp'
 
 export function Artist () {
   const { artist, setIsHoverTrack, artistRef, divWidth, idArtist, bgColor, setBgColor, headerInfo, saveFavourtieArtist, followingArtist } = useArtist()
@@ -15,9 +15,7 @@ export function Artist () {
   return (
     <>
 
-      <ColorExtractor getColors={colors => setBgColor(colors)}>
-        <img src={artist?.headerImage} alt='colorImg' style={{ display: 'none' }} />
-      </ColorExtractor>
+      <ColorExtractorComp setBgColor={setBgColor} urlImg={artist?.headerImage} />
 
       <section
         className={styles.container}

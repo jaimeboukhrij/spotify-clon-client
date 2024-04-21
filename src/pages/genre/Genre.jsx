@@ -2,10 +2,10 @@
 import { useGenre } from '../../hooks/UseGenre'
 import { Link } from 'react-router-dom'
 import styles from './genre.module.css'
-import { ColorExtractor } from 'react-color-extractor'
 import { useContext } from 'react'
 import { TrackPlayingContext } from '../../contexts/trackPlaying'
 import { Loader } from '../../components/loader/Loader'
+import ColorExtractorComp from '../../components/colorExtractor/ColorExtractorComp'
 
 export function Genre () {
   const { categoryName, playlists, randomBG, setRandomBG } = useGenre()
@@ -13,9 +13,9 @@ export function Genre () {
 
   return (
     <>
-      <ColorExtractor getColors={colors => setRandomBG(colors[0])}>
-        <img src={playlists?.[0]?.urlImg} alt='colorImg' style={{ display: 'none' }} />
-      </ColorExtractor>
+
+      <ColorExtractorComp setBgColor={setRandomBG} urlImg={playlists?.[0]?.urlImg} />
+
       {playlists?.length
         ? <section
             style={{

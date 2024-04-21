@@ -3,21 +3,20 @@ import { useContext } from 'react'
 import { Header } from '../../components/Album/Header'
 import { useAlbum } from '../../hooks/UseAlbum'
 import styles from './album.module.css'
-import { ColorExtractor } from 'react-color-extractor'
 import { TrackPlayingContext } from '../../contexts/trackPlaying'
 import { AllTracks } from '../../components/Album/AllTracks'
 import { numberDateToWriteDate } from '../../utils/numberDateToWriteDate'
 import { RelatedArtist } from '../../components/Artist/RelatedArtist'
 import { Footer } from '../../components/Footer/Footer'
+import ColorExtractorComp from '../../components/colorExtractor/ColorExtractorComp'
 export function Album () {
   const { albumInfo, albumTracks, setIsHoverTrack, idAlbum, artistdiscography, width, bgColor, setBgColor } = useAlbum()
   const { isPlaying, runFirtsTrack, idAlbumTrack, trackPlaying } = useContext(TrackPlayingContext)
 
   return (
     <>
-      <ColorExtractor getColors={colors => setBgColor(colors)}>
-        <img src={albumInfo?.urlImg} alt='colorImg' style={{ display: 'none' }} />
-      </ColorExtractor>
+
+      <ColorExtractorComp setBgColor={setBgColor} urlImg={albumInfo?.urlImg} />
       {bgColor && <section
         style={{
           width: '-webkit-fill-available',
