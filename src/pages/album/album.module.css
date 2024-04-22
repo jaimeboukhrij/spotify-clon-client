@@ -129,7 +129,7 @@
   .mainSection .tittle{
     display: flex;
     align-items: center;
-    width: 40%;
+    width: max-content;
     gap: 10px;
     min-width: 246px;
   }

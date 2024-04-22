@@ -3,7 +3,7 @@ import axios from 'axios'
 class PlayListService {
   constructor () {
     this.api = axios.create({
-      baseURL: 'https://serverspotify.fly.dev/api/playList'
+      baseURL: 'http://localhost:3000/api/playList/'
     })
 
     this.api.interceptors.request.use((config) => {
@@ -18,7 +18,7 @@ class PlayListService {
   }
 
   savePlayList (data) {
-    return this.api.put('/savePlayList', data)
+    return this.api.put('savePlayList', data)
   }
 
   createPlayList (data) {
@@ -31,6 +31,10 @@ class PlayListService {
 
   getPlayListInfo (playListId) {
     return this.api.get(`getPlayListInfo/${playListId}`)
+  }
+
+  deletePlayList (playListId) {
+    return this.api.delete(`deletePlayList/${playListId}`)
   }
 }
 

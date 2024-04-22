@@ -6,8 +6,13 @@ import { Artists } from '../../components/Track/Artists'
 import { TracksList } from '../../components/tracksList/TracksList'
 import { RelatedArtist } from '../../components/Artist/RelatedArtist'
 import { Loader } from '../../components/loader/Loader'
+import { useContext } from 'react'
+import { TrackPlayingContext } from '../../contexts/trackPlaying'
+import { Footer } from '../../components/Footer/Footer'
 export function Track () {
   const { trackInfo, artistsData, setIsHoverTrack, artistAlbums, divWidth, bgColor } = useTrack()
+  const { trackPlaying } = useContext(TrackPlayingContext)
+
   return (
     <>
 
@@ -15,7 +20,11 @@ export function Track () {
         ?
           <section
             className={styles.container}
-            style={{ background: `linear-gradient(${bgColor[0]}, rgba(0, 0, 0, .4) 70%)` }}
+            style={{
+              background: `linear-gradient(${bgColor[0]}, rgba(0, 0, 0, .4) 70%)`,
+              marginBottom: trackPlaying ? '7%' : '36px'
+
+            }}
             id='containerTracks'
           >
             <Header trackInfo={trackInfo} artistImg={artistsData?.[0].data.imgUrl} />
@@ -54,6 +63,7 @@ export function Track () {
                 <h2 style={{ paddingLeft: '1%' }}> Sus fans tambien escuchan</h2>
               </RelatedArtist>
 
+              <Footer />
             </section>
 
           </section>

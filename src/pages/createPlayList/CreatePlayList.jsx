@@ -13,11 +13,11 @@ export function CreatePlayList () {
     handleOpen, openModal, handleQueryChange, playListInfo,
     inputRef, handleFileChange, handleSubmit, upadatePhoto,
     bgColor, addTrack, tracksIds, deleteTrack, setIsHoverTrack, idPlayList,
-    tracksSearched
+    tracksSearched, deletePlay
   } = useCreatePlayList()
   return (
     <>
-      {bgColor.length && playListInfo?.urlImg ?
+      {playListInfo ?
         <section
           className={styles.container}
           style={{ background: `linear-gradient(${bgColor[0]} 0, rgba(7, 7, 7, 0.852) 50%)` }}
@@ -26,7 +26,7 @@ export function CreatePlayList () {
             hoverAddPhoto={hoverAddPhoto} setHoverAddPhoto={setHoverAddPhoto}
             handleClick={handleClick} handleOpen={handleOpen} openModal={openModal} playListInfo={playListInfo}
           />
-          <ActionBar idToPlay={idPlayList} type='myplaylist' />
+          <ActionBar idToPlay={idPlayList} type='myplaylist' deletePlay={deletePlay} />
           <section className={styles.mainSection}>
             {
         playListInfo?.tracks ?

@@ -52,7 +52,7 @@ export function Tracks ({ tracks, setIsHoverTrack }) {
 
               </div>
             </div>
-            <Link className={styles.album}>{album[0].length > 30 ? `${album[0].substring(0, 30)}...` : album[0]}</Link>
+            <Link to={`/album/${album[1]}`} className={styles.album}>{album[0].length > 30 ? `${album[0].substring(0, 30)}...` : album[0]}</Link>
             <p className={styles.duration}>
               <box-icon name='heart' color='white' className='icon' />
               {secondsToMinute(duration)}

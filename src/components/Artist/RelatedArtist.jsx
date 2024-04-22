@@ -11,7 +11,6 @@ export function RelatedArtist ({ relatedArtist, divWidth, circuleImg, children, 
       <article style={{ marginBottom: '30px' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }} className={styles.title}>
           {children}
-          <h5 style={{ paddingRight: '3%' }}>Mostrar mas</h5>
         </div>
         <div
           className={styles.relatedArtists}

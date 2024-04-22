@@ -8,7 +8,7 @@ import { TrackPlayingContext } from '../../contexts/trackPlaying'
 import { AuthContext } from '../../contexts/auth.context'
 export function Section3 ({ recentlyListened, filterListened, filterType, setQuery, query, myPlayLists }) {
   const { isVisibleInput, setIsVisibleInput } = UseAside()
-  const { isPlaying } = useContext(TrackPlayingContext)
+  const { trackPlaying } = useContext(TrackPlayingContext)
   const { user } = useContext(AuthContext)
   const showRecentListened = (filterType || query) ? filterListened : recentlyListened
   return (
@@ -29,7 +29,7 @@ export function Section3 ({ recentlyListened, filterListened, filterType, setQue
         flexDirection: 'column',
         gap: '10px',
         paddingLeft: '3%',
-        paddingBottom: isPlaying ? '80px' : '10px',
+        maxHeight: trackPlaying ? '480px' : 'none',
         overflowY: 'auto'
       }}
       >

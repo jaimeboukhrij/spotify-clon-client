@@ -65,9 +65,9 @@ export function useArtist () {
 
     const fetchData = async () => {
       try {
+        const artistAppearsOn = await getArtistAppearOn(idArtist)
         const topTracks = await getArtistTopTrack(idArtist)
         const relatedArtist = await getRelatedArtist(idArtist)
-        const artistAppearsOn = await getArtistAppearOn(idArtist)
         const artistFeaturing = await getArtistFeaturing(idArtist)
         const artistDiscoveredOn = await getArtistiscoveredOn(idArtist)
         const additionalInfo = {

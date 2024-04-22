@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef, useState } from 'react'
 import uploadPhoto from '../utils/uploadPhoto'
 import playListService from '../services/playList.service'
-import { useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import { GlobalVarContext } from '../contexts/globalVar.context'
 import { getTrackInfo } from '../utils/getTrackInfo'
 import { SearchContext } from '../contexts/search.context'
@@ -19,6 +19,7 @@ export function useCreatePlayList () {
   const [playListInfo, setPlayListInfo] = useState()
   const { idPlayList } = useParams()
   const { setQuery, searchInfo } = useContext(SearchContext)
+  const navigate = useNavigate()
   useEffect(() => {
     setBgColor([])
     setQuery('')
@@ -137,13 +138,12 @@ export function useCreatePlayList () {
     })
   }
   const setIsHoverTrack = (trackIndex, isHover) => {
-    setPlayListInfo(prev => {
-      const newPlayListInfo = { ...prev }
-      const newTracks = [...newPlayListInfo.tracks]
-      newTracks[trackIndex] = { ...newTracks[trackIndex], isHover }
-      newPlayListInfo.tracks = newTracks
-      return newPlayListInfo
-    })
+    setPlayListInfo(prev => ({
+      ...prev,
+      tracks: prev.tracks.map((track, index) =>
+        index === trackIndex ? { ...track, isHover } : track
+      )
+    }))
   }
   const filterTracks = () => {
     const filterTracks = searchInfo?.tracks.filter(elem => !tracksIds.includes(elem.id)).slice(0, 10)
@@ -154,6 +154,18 @@ export function useCreatePlayList () {
       const data = playListInfo.tracks?.map(elem => elem.trackId)
       setTracksIds(data)
     }
+  }
+  const deletePlay = (playListId) => {
+    playListService.deletePlayList(playListId)
+      .then(data => {
+        playListService
+          .getPlayListInfo(idPlayList)
+          .then(({ data }) => setPlayListInfo(data))
+          .catch(e => console.log(e))
+        navigate('/')
+        setChangeMyPL(!changeMyPlayLis)
+      })
+      .catch(e => console.log(e))
   }
 
   return {
@@ -176,7 +188,8 @@ export function useCreatePlayList () {
     deleteTrack,
     setIsHoverTrack,
     idPlayList,
-    tracksSearched
+    tracksSearched,
+    deletePlay
 
   }
 }

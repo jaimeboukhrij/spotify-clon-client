@@ -47,7 +47,7 @@ export function Album () {
             <p>{albumInfo.copyRights}</p>
           </article>
           <RelatedArtist relatedArtist={artistdiscography} divWidth={width} url='album'>
-            Mas de {albumInfo.name}
+            <h2 style={{ paddingLeft: '1%' }}>Mas de {albumInfo.name}</h2>
           </RelatedArtist>
           <Footer />
         </section>
