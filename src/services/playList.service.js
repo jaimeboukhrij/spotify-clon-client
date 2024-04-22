@@ -3,7 +3,7 @@ import axios from 'axios'
 class PlayListService {
   constructor () {
     this.api = axios.create({
-      baseURL: 'http://localhost:3000/api/playList/'
+      baseURL: 'https://serverspotify.fly.dev/api/playList/'
     })
 
     this.api.interceptors.request.use((config) => {
