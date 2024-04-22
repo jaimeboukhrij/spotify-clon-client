@@ -8,7 +8,7 @@ export async function getArtistiscoveredOn (idArtist) {
       id: idArtist
     },
     headers: {
-      'X-RapidAPI-Key': 'd06e30e105mshadd8ddf94f9f185p133fb2jsn121b18afb4c8',
+      'X-RapidAPI-Key': '8ccb704bd1mshe543da27b9cee74p1270bdjsn2c0ce9ef22dd',
       'X-RapidAPI-Host': 'spotify23.p.rapidapi.com'
     }
   }

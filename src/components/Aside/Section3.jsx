@@ -29,7 +29,7 @@ export function Section3 ({ recentlyListened, filterListened, filterType, setQue
         flexDirection: 'column',
         gap: '10px',
         paddingLeft: '3%',
-        paddingBottom: isPlaying ? '80px' : 'none',
+        paddingBottom: isPlaying ? '80px' : '10px',
         overflowY: 'auto'
       }}
       >
@@ -40,7 +40,7 @@ export function Section3 ({ recentlyListened, filterListened, filterType, setQue
             <Link to={`myplaylist/${id}`} key={id} className={styles.card}>
               <img
                 src={urlImg} alt={`${name} image`}
-                style={{ borderRadius: typeMusic === 'artist' ? '50%' : '5px' }}
+                style={{ borderRadius: typeMusic === 'artist' ? '50%' : '5px', objectFit: 'cover' }}
               />
               <span>
                 <h5 style={{ fontSize: '15px', color: 'white' }}>{name}</h5>
@@ -57,7 +57,7 @@ export function Section3 ({ recentlyListened, filterListened, filterType, setQue
               <Link to={`${typeMusic}/${id}`} key={id} className={styles.card}>
                 <img
                   src={urlImg} alt={`${name} image`}
-                  style={{ borderRadius: typeMusic === 'artist' ? '50%' : '5px' }}
+                  style={{ borderRadius: typeMusic === 'artist' ? '50%' : '5px', objectFit: 'cover' }}
                 />
                 <span>
                   <h5 style={{ fontSize: '15px', color: 'white' }}>{name}</h5>

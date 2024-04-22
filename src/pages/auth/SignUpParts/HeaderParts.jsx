@@ -4,7 +4,7 @@ export function HeaderParts ({ part, setPart, children }) {
   return (
     <>
       <div className={styles.barra}>
-        <div className={styles.relleno} style={{ width: '33%' }} />
+        <div className={styles.relleno} style={{ width: `${part * 34}%` }} />
       </div>
       <article className={styles.contentPart}>
         <div className={styles.contentDiv}>

@@ -26,7 +26,7 @@ export function useCreatePlayList () {
       .getPlayListInfo(idPlayList)
       .then(({ data }) => setPlayListInfo(data))
       .catch(e => console.log(e))
-  }, [idPlayList, openModal])
+  }, [idPlayList])
 
   useEffect(() => {
     actTracksIds()
@@ -46,6 +46,10 @@ export function useCreatePlayList () {
   const handleOpen = () => setOpenModal(true)
   const handleClose = () => {
     setOpenModal(false)
+    playListService
+      .getPlayListInfo(idPlayList)
+      .then(({ data }) => setPlayListInfo(data))
+      .catch(e => console.log(e))
   }
   const handleClick = () => {
     inputRef.current.click()

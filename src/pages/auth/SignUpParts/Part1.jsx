@@ -14,7 +14,9 @@ export function Part1 ({ setPart, part, query, setQuey, validEmail }) {
       </div>
       <ContinueWith width='99%' height='28%' padding='3.5% 3%' text='Registrarte' />
       <span className={styles.line} style={{ width: '100%', borderTop: '1px solid rgb(255 255 255 / 20%)' }} />
-      <p>¿Ya tienes una cuenta? <Link to='/login'>Inicia sesión aquí.</Link></p>
+      <p style={{ display: 'flex', gap: '5px', alignItems: 'center' }}>
+        ¿Ya tienes una cuenta? <Link to='/login'>Inicia sesión aquí.</Link>
+      </p>
     </>
   )
 }

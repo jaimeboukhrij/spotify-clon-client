@@ -3,7 +3,7 @@ import axios from 'axios'
 class UserService {
   constructor () {
     this.api = axios.create({
-      baseURL: 'http://localhost:3005/api/user'
+      baseURL: 'https://serverspotify.fly.dev/api/user'
     })
 
     this.api.interceptors.request.use((config) => {

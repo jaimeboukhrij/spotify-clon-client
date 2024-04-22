@@ -3,7 +3,7 @@ import axios from 'axios'
 class AuthService {
   constructor () {
     this.api = axios.create({
-      baseURL: 'http://localhost:3005/api/auth'
+      baseURL: 'https://serverspotify.fly.dev/api/auth'
     })
 
     this.api.interceptors.request.use((config) => {
