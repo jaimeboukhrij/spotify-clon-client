@@ -26,10 +26,13 @@ export function useArtist () {
   const { user } = useContext(AuthContext)
   useEffect(() => {
     document.getElementById(outerDivName)?.scrollTo(0, 0)
+    setBgColor()
+    setArtist()
+    setHeaderInfo()
   }, [idArtist])
   useEffect(() => {
     setPageName(artist?.name)
-  }, [artist])
+  }, [artist, idArtist])
 
   useEffect(() => {
     function handleResize () {

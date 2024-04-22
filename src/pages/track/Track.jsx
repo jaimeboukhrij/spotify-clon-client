@@ -6,15 +6,12 @@ import { Artists } from '../../components/Track/Artists'
 import { TracksList } from '../../components/tracksList/TracksList'
 import { RelatedArtist } from '../../components/Artist/RelatedArtist'
 import { Loader } from '../../components/loader/Loader'
-import ColorExtractorComp from '../../components/colorExtractor/ColorExtractorComp'
 export function Track () {
-  const { trackInfo, artistsData, setIsHoverTrack, artistAlbums, divWidth, bgColor, setBgColor } = useTrack()
+  const { trackInfo, artistsData, setIsHoverTrack, artistAlbums, divWidth, bgColor } = useTrack()
   return (
     <>
 
-      <ColorExtractorComp setBgColor={setBgColor} urlImg={trackInfo?.urlImg} />
-
-      {artistsData?.length
+      {artistsData?.length && bgColor.length
         ?
           <section
             className={styles.container}

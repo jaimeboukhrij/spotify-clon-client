@@ -5,6 +5,7 @@ import getPlayListInfo from '../utils/getPlayListInfo'
 import userService from '../services/user.services'
 import { AuthContext } from '../contexts/auth.context'
 import { getSpotifyToken } from '../services/getSpotifyToken.service'
+import getDominantColorFromImage from '../utils/getDominantColorFromImage'
 export function useHome () {
   const [playListInfo, setPlayListInfo] = useState([])
   const [favouriteArtists, setFavouritesArtists] = useState([])
@@ -54,6 +55,13 @@ export function useHome () {
       window.removeEventListener('resize', handleResize)
     }
   }, [user, spotifyToken])
+  useEffect(() => {
+    if (imgColor) {
+      getDominantColorFromImage(imgColor).then(data => {
+        setBgColor([data])
+      })
+    }
+  }, [imgColor])
 
   async function getPlayListData (list, state) {
     const allData = list.map(async elem => {

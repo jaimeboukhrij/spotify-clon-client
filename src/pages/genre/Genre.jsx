@@ -5,21 +5,18 @@ import styles from './genre.module.css'
 import { useContext } from 'react'
 import { TrackPlayingContext } from '../../contexts/trackPlaying'
 import { Loader } from '../../components/loader/Loader'
-import ColorExtractorComp from '../../components/colorExtractor/ColorExtractorComp'
 
 export function Genre () {
-  const { categoryName, playlists, randomBG, setRandomBG } = useGenre()
+  const { categoryName, playlists, bgColor } = useGenre()
   const { runFirtsTrack, isPlaying, idPlayList, trackPlaying } = useContext(TrackPlayingContext)
 
   return (
     <>
 
-      <ColorExtractorComp setBgColor={setRandomBG} urlImg={playlists?.[0]?.urlImg} />
-
-      {playlists?.length
+      {playlists?.length && bgColor
         ? <section
             style={{
-              background: `linear-gradient(${randomBG || 'rgb(140, 25, 50)'}, rgba(0, 0, 0, .4) 56%)`,
+              background: `linear-gradient(${bgColor[0] || 'rgb(140, 25, 50)'}, rgba(0, 0, 0, .4) 56%)`,
               width: '-webkit-fill-available',
               height: '-webkit-fill-available',
               position: 'sticky',

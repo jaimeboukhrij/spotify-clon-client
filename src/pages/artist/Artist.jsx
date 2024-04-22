@@ -6,22 +6,17 @@ import { TrackPlayingContext } from '../../contexts/trackPlaying'
 import { Tracks } from '../../components/Artist/Tracks'
 import { RelatedArtist } from '../../components/Artist/RelatedArtist'
 import { Loader } from '../../components/loader/Loader'
-import ColorExtractorComp from '../../components/colorExtractor/ColorExtractorComp'
-
 export function Artist () {
-  const { artist, setIsHoverTrack, artistRef, divWidth, idArtist, bgColor, setBgColor, headerInfo, saveFavourtieArtist, followingArtist } = useArtist()
+  const { artist, setIsHoverTrack, artistRef, divWidth, idArtist, headerInfo, saveFavourtieArtist, followingArtist } = useArtist()
   const { isPlaying, runFirtsTrack, idArtist: idArtistTrack, trackPlaying } = useContext(TrackPlayingContext)
-  console.log(artist)
   return (
     <>
-
-      <ColorExtractorComp setBgColor={setBgColor} urlImg={artist?.headerImage} />
 
       <section
         className={styles.container}
         id='containerArtist'
         style={{
-          background: `linear-gradient(${bgColor?.[0]}, rgba(0, 0, 0, .4) 57%)`,
+          background: 'linear-gradient(gray, rgba(0, 0, 0, .4) 100%)',
           marginBottom: trackPlaying ? '83px' : '0px'
 
         }}

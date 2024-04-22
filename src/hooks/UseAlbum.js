@@ -4,6 +4,7 @@ import { useParams } from 'react-router'
 import { getMoreofArtist } from '../utils/getMoreofArtist'
 import { GlobalVarContext } from '../contexts/globalVar.context'
 import { useBgNav } from './UseBgNav'
+import getDominantColorFromImage from '../utils/getDominantColorFromImage'
 
 export function useAlbum () {
   const [albumInfo, setAlbumInfo] = useState()
@@ -19,6 +20,7 @@ export function useAlbum () {
   const { setPageName } = useContext(GlobalVarContext)
 
   useEffect(() => {
+    setBgColor()
     setNavFilter('transparent')
     document.getElementById(outerDivName)?.scrollTo(0, 0)
 
@@ -44,6 +46,9 @@ export function useAlbum () {
     if (albumInfo) {
       getArtistdiscography()
       setPageName(albumInfo?.name)
+      getDominantColorFromImage(albumInfo?.urlImg).then(data => {
+        setBgColor([data])
+      })
     }
   }, [albumInfo])
   const setIsHoverTrack = (trackIndex, isHover) => {

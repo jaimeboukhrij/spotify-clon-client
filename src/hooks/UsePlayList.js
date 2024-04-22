@@ -5,6 +5,7 @@ import getPlayListInfo from '../utils/getPlayListInfo'
 import { TrackPlayingContext } from '../contexts/trackPlaying'
 import { useBgNav } from './UseBgNav'
 import { GlobalVarContext } from '../contexts/globalVar.context'
+import getDominantColorFromImage from '../utils/getDominantColorFromImage'
 
 export function UsePlayList () {
   const [tracks, setTracks] = useState([])
@@ -23,7 +24,12 @@ export function UsePlayList () {
     getPlayListInfo(idPlayList, setPlayListInfo)
   }, [idPlayList])
 
-  useEffect(() => setPageName(playListInfo.name), [playListInfo])
+  useEffect(() => {
+    setPageName(playListInfo.name)
+    getDominantColorFromImage(playListInfo.urlImg).then(data => {
+      setBgColor([data])
+    })
+  }, [playListInfo])
 
   const setIsHoverTrack = (trackIndex, isHover) => {
     setTracks(prevTracks => {

@@ -5,16 +5,14 @@ import { TrackPlayingContext } from '../../contexts/trackPlaying'
 import { UsePlayList } from '../../hooks/UsePlayList'
 import styles from './playList.module.css'
 import { ActionBar } from '../../components/actionBar/ActionBar'
-import ColorExtractorComp  from '../../components/colorExtractor/ColorExtractorComp'
 import { Loader } from '../../components/loader/Loader'
 
 export function PlayList () {
-  const { tracks, playListInfo, setIsHoverTrack, bgColor, setBgColor, updateTrackPlaying, idPlayList } = UsePlayList()
+  const { tracks, playListInfo, setIsHoverTrack, bgColor, updateTrackPlaying, idPlayList } = UsePlayList()
   const { trackPlaying } = useContext(TrackPlayingContext)
 
   return (
     <>
-      <ColorExtractorComp urlImg={playListInfo.urlImg} setBgColor={setBgColor} />
 
       <section
         style={{

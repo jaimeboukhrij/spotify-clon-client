@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 
 export function RelatedArtist ({ relatedArtist, divWidth, circuleImg, children, url }) {
   const { runFirtsTrack, isPlaying, idArtist, idPlayList, idAlbum } = useContext(TrackPlayingContext)
-  console.log(idArtist, idPlayList, idAlbum)
 
   return (
     relatedArtist?.length ?

@@ -8,6 +8,7 @@ import { getArtistAlbums } from '../utils/getArtistAlbums'
 import { getRelatedArtist } from '../utils/getRelatedArtist'
 import { useBgNav } from './UseBgNav'
 import { GlobalVarContext } from '../contexts/globalVar.context'
+import getDominantColorFromImage from '../utils/getDominantColorFromImage'
 
 export const useTrack = () => {
   const [trackInfo, setTrackInfo] = useState()
@@ -23,6 +24,7 @@ export const useTrack = () => {
 
   useEffect(() => {
     document.getElementById(outerDivName)?.scrollTo(0, 0)
+    setBgColor()
     getTrackInfo(idTrack)
       .then(data => data)
       .then(prevRes => {
@@ -52,6 +54,9 @@ export const useTrack = () => {
   useEffect(() => {
     if (trackInfo) {
       getArtistData(trackInfo)
+      getDominantColorFromImage(trackInfo?.urlImg).then(data => {
+        setBgColor([data])
+      })
     }
   }, [trackInfo])
 

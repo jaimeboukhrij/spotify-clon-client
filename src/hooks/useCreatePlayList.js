@@ -5,6 +5,7 @@ import { useParams } from 'react-router'
 import { GlobalVarContext } from '../contexts/globalVar.context'
 import { getTrackInfo } from '../utils/getTrackInfo'
 import { SearchContext } from '../contexts/search.context'
+import getDominantColorFromImage from '../utils/getDominantColorFromImage'
 
 export function useCreatePlayList () {
   const [hoverAddPhoto, setHoverAddPhoto] = useState(false)
@@ -12,14 +13,14 @@ export function useCreatePlayList () {
   const [openModal, setOpenModal] = useState(false)
   const { changeMyPlayLis, setChangeMyPL } = useContext(GlobalVarContext)
   const [upadatePhoto, setUpdatePhoto] = useState(false)
-  const [bgColor, setBgColor] = useState(['#4a4a4a'])
+  const [bgColor, setBgColor] = useState([])
   const [tracksSearched, setTracksSearched] = useState()
   const [tracksIds, setTracksIds] = useState()
   const [playListInfo, setPlayListInfo] = useState()
   const { idPlayList } = useParams()
   const { setQuery, searchInfo } = useContext(SearchContext)
   useEffect(() => {
-    setBgColor(['#4a4a4a'])
+    setBgColor([])
     setQuery('')
     playListService
       .getPlayListInfo(idPlayList)
@@ -32,6 +33,9 @@ export function useCreatePlayList () {
     if (playListInfo) {
       const data = playListInfo.tracks?.map(elem => elem.trackId)
       setTracksIds(data)
+      getDominantColorFromImage(playListInfo.urlImg).then(data => {
+        setBgColor([data])
+      })
     }
   }, [playListInfo])
 

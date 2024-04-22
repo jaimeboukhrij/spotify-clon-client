@@ -5,18 +5,21 @@ import getPlayListByGenre from '../utils/getPlayListsByGenre'
 import { GlobalVarContext } from '../contexts/globalVar.context'
 import newSpotifyService from '../services/spotify.service'
 import { useBgNav } from './UseBgNav'
+import getDominantColorFromImage from '../utils/getDominantColorFromImage'
 
 export function useGenre () {
   const [playlists, setPlayLists] = useState([])
   const [categoryName, setCategoryName] = useState(null)
   const [categoryImg, setCategoryImg] = useState(null)
   const [limit, setLimit] = useState(10)
+  const [bgColor, setBgColor] = useState()
   const { randomBG, setRandomBG, setPageName } = useContext(GlobalVarContext)
   const { idGenre } = useParams()
   const outerDivName = 'sectionGenre'
   const innerDivName = 'mainSectionGenre'
   useBgNav({ bgColor: [randomBG], outerDivName, innerDivName })
   useEffect(() => document.getElementById(outerDivName)?.scrollTo(0, 0), [])
+  useEffect(() => setBgColor(), [idGenre])
   useEffect(() => {
     getPlayListByGenre(idGenre, setCategoryName, setPlayLists, limit)
     const container = document.getElementById('sectionGenre')
@@ -48,6 +51,9 @@ export function useGenre () {
           setPageName(categoryName)
         })
         .catch(e => console.log(e))
+      getDominantColorFromImage(playlists?.[0]?.urlImg).then(data => {
+        setBgColor([data])
+      })
     }
   }, [categoryName, idGenre])
   return {
@@ -55,6 +61,7 @@ export function useGenre () {
     playlists,
     randomBG,
     categoryImg,
-    setRandomBG
+    setRandomBG,
+    bgColor
   }
 }

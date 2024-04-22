@@ -6,7 +6,6 @@ import { AuthContext } from '../../contexts/auth.context'
 import { Header } from '../../components/Home/Header'
 import { TrackPlayingContext } from '../../contexts/trackPlaying'
 import { Footer } from '../../components/Footer/Footer'
-import ColorExtractorComp from '../../components/colorExtractor/ColorExtractorComp'
 export function Home () {
   const { playListInfo, divWidth, favouriteArtists, radios, recentListened, imgColor, setImgColor, bgColor, setBgColor } = useHome()
   const { user } = useContext(AuthContext)
@@ -14,7 +13,6 @@ export function Home () {
 
   return (
     <>
-      <ColorExtractorComp urlImg={imgColor} setBgColor={setBgColor} />
       <section
         className={styles.main}
         style={{

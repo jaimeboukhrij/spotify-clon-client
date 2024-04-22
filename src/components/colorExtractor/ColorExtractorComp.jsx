@@ -1,10 +1,9 @@
 import { ColorExtractor } from 'react-color-extractor'
 
-function ColorExtractorComp ({ urlImg, setBgColor }) {
+export default function ColorExtractorComp ({ urlImg, setBgColor }) {
   return (
     <ColorExtractor getColors={colors => setBgColor(colors)}>
       <img src={urlImg} alt='colorImg' style={{ display: 'none' }} />
     </ColorExtractor>
   )
 }
-export default ColorExtractorComp
