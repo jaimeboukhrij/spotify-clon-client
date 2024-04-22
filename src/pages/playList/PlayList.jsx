@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { AllTracks } from '../../components/PlayList/AllTracks'
-import { Header } from '../../components/PlayList/header'
+import { Header } from '../../components/PlayList/Header'
 import { TrackPlayingContext } from '../../contexts/trackPlaying'
 import { UsePlayList } from '../../hooks/UsePlayList'
 import styles from './playList.module.css'
