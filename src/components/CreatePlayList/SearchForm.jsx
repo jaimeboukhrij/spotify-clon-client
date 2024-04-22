@@ -1,5 +1,6 @@
 import { useContext } from 'react'
-import styles from '../../pages/createPlayList/createPlayList.module.css'
+import styles from '../../pages/createPlayList/createplaylist.module.css'
+
 import { SearchContext } from '../../contexts/search.context'
 
 export function SearchForm ({ isVisibleInput = true }) {

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Box from '@mui/material/Box'
-import styles from '../../pages/createPlayList/createPlayList.module.css'
+import styles from '../../pages/createPlayList/createplaylist.module.css'
 
 import Modal from '@mui/material/Modal'
 import { Loader } from '../loader/Loader'

@@ -1,5 +1,5 @@
 import { SearchForm } from './SearchForm'
-import styles from '../../pages/createPlayList/createPlayList.module.css'
+import styles from '../../pages/createPlayList/createplaylist.module.css'
 import { useContext } from 'react'
 import { SearchContext } from '../../contexts/search.context'
 import { TracksList } from '../tracksList/TracksList'

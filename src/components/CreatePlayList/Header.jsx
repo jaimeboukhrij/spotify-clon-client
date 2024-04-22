@@ -1,4 +1,4 @@
-import styles from '../../pages/createPlayList/createPlayList.module.css'
+import styles from '../../pages/createPlayList/createplaylist.module.css'
 export function Header ({ hoverAddPhoto, setHoverAddPhoto, handleOpen, openModal, playListInfo }) {
   return (
     playListInfo &&
