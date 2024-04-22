@@ -1,5 +1,5 @@
 import styles from '../../pages/playList/playList.module.css'
-import { msSecondsToHour } from '../../utils/mssecondsToHour'
+import msSecondsToHour from '../../utils/msSecondsToHour'
 
 export function Header ({ playListInfo, tracks }) {
   return (
