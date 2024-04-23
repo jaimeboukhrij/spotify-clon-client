@@ -196,7 +196,8 @@ export function TrackPlayProviderWrapper ({ children }) {
         idPlayListTrack: idPlayList,
         idAlbumTrack: idAlbum,
         audioPlayer,
-        typeMusic
+        typeMusic,
+        setTrackPlaying
       }}
     >
       {children}

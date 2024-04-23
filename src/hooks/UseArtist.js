@@ -130,6 +130,7 @@ export function useArtist () {
     if (user) {
       setFollowingArtist(!followingArtist)
       const userId = user._id
+      console.log(headerInfo)
       userService.saveFavouriteArtist({ idArtist, headerInfo, userId, artist }).catch(e => console.log(e))
     }
   }

@@ -6,7 +6,6 @@ import { AuthContext } from './contexts/auth.context'
 import AppRoutes from './routes/AppRoutes'
 import { GlobalVarProviderWrapper } from './contexts/globalVar.context'
 import { PlayerTrack } from './components/PlayerTrack/PlayerTrack'
-import { TrackPlayProviderWrapper } from './contexts/trackPlaying'
 import { SearchVarProviderWrapper } from './contexts/search.context'
 import { useContext, useEffect } from 'react'
 
@@ -20,29 +19,26 @@ function App () {
 
   return (
     <>
-      <TrackPlayProviderWrapper>
-        <GlobalVarProviderWrapper>
-          <SearchVarProviderWrapper>
-
-            {!isLoginRoute && <Aside />}
-            <PlayerTrack />
-            <main
-              id='main'
-              style={{
-                width: '-webkit-fill-available',
-                height: '--webkit-fill-available',
-                overflowY: 'hidden',
-                overflowX: 'hidden',
-                borderRadius: '7px',
-                margin: '7px'
-              }}
-            >
-              {!isLoginRoute && <Nav />}
-              <AppRoutes />
-            </main>
-          </SearchVarProviderWrapper>
-        </GlobalVarProviderWrapper>
-      </TrackPlayProviderWrapper>
+      <GlobalVarProviderWrapper>
+        <SearchVarProviderWrapper>
+          {!isLoginRoute && <Aside />}
+          <PlayerTrack />
+          <main
+            id='main'
+            style={{
+              width: '-webkit-fill-available',
+              height: '--webkit-fill-available',
+              overflowY: 'hidden',
+              overflowX: 'hidden',
+              borderRadius: '7px',
+              margin: '7px'
+            }}
+          >
+            {!isLoginRoute && <Nav />}
+            <AppRoutes />
+          </main>
+        </SearchVarProviderWrapper>
+      </GlobalVarProviderWrapper>
     </>
   )
 }

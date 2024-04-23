@@ -8,7 +8,7 @@ export function PlayerTrack () {
   const { trackPlaying, isPlaying, runTrack, runNextTrack, runPrevTrack, currentTime, duration, typeMusic } = useContext(TrackPlayingContext)
   return (
     trackPlaying &&
-      <footer className={styles.main}>
+      <footer className={styles.main} id='playerTracks'>
         <article className={styles.track}>
           <img src={trackPlaying.urlImg} alt='' />
           <div>

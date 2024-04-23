@@ -1,9 +1,11 @@
 import { useContext, useState } from 'react'
 import styles from './nav.module.css'
 import { AuthContext } from '../../contexts/auth.context'
+import { TrackPlayingContext } from '../../contexts/trackPlaying'
 export function Profile ({ profileName }) {
   const [profileOptVisible, setProfileOptvisible] = useState(false)
   const { deleteItem } = useContext(AuthContext)
+  const { setTrackPlaying } = useContext(TrackPlayingContext)
   return (
     <>
       <div
@@ -23,7 +25,10 @@ export function Profile ({ profileName }) {
             <div>Configuración</div>
             <div
               style={{ borderTop: '1px solid #ffffff2e' }}
-              onClick={() => deleteItem()}
+              onClick={() => {
+                setTrackPlaying(false)
+                deleteItem()
+              }}
             >
               Cerrar sesión
             </div>
