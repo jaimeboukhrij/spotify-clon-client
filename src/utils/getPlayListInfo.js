@@ -20,7 +20,7 @@ const getPlayListInfo = (idPlayList, setPlayListInfo) => {
       setPlayListInfo && setPlayListInfo(info)
       return info
     })
-    .catch(e => window.reload())
+    .catch(e => window.location.reload())
 }
 
 export default getPlayListInfo
