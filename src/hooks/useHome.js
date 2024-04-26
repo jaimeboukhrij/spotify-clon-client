@@ -30,7 +30,7 @@ export function useHome () {
         })
     }
 
-    setInterval(reloadPage, 3540000)
+    setInterval(reloadPage, 3530000)
   }, [])
   useEffect(() => {
     if (user) {

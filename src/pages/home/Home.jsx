@@ -6,6 +6,7 @@ import { AuthContext } from '../../contexts/auth.context'
 import { Header } from '../../components/Home/Header'
 import { TrackPlayingContext } from '../../contexts/trackPlaying'
 import { Footer } from '../../components/Footer/Footer'
+import { Loader } from '../../components/loader/Loader'
 export function Home () {
   const { playListInfo, divWidth, favouriteArtists, radios, recentListened, imgColor, setImgColor, bgColor, setBgColor } = useHome()
   const { user } = useContext(AuthContext)
@@ -13,11 +14,14 @@ export function Home () {
 
   return (
     <>
+      {
+    playListInfo?.length ?
       <section
         className={styles.main}
         style={{
           background: `linear-gradient(${bgColor.length ? bgColor[0] : 'gray'}, rgba(0, 0, 0, .4) 70%)`,
-          paddingBottom: trackPlaying ? '9%' : '36px'
+          paddingBottom: trackPlaying ? '9%' : '36px',
+          transformOrigin: '300ms'
 
         }}
       >
@@ -34,6 +38,8 @@ export function Home () {
         <Footer />
 
       </section>
+      : <Loader />
+    }
     </>
   )
 }

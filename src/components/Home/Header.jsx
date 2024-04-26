@@ -14,7 +14,6 @@ export function Header ({ recentListened, setImgColor, setBgColor }) {
               onMouseEnter={() => {
                 setImgColor(elem.urlImg)
               }}
-              onMouseLeave={() => setBgColor([])}
               key={elem.id} className={styles.eachElem}
             >
               <span style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '5px' }}>

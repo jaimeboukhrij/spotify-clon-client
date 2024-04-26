@@ -106,7 +106,8 @@
     flex-direction: column;
     padding-top: 8%;
     .header{
-      height: 10%;
+      height: 70px;
+      padding: 10px 0;
       padding-left: 6%;
       display: flex;
       flex-wrap: wrap;
